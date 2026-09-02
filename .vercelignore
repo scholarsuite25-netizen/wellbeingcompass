@@ -1,0 +1,9 @@
+.git
+.github
+*.md
+!README.md
+scripts/
+prisma/dev.db
+prisma/dev.db-journal
+.env
+.env.local

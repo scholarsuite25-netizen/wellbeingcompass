@@ -1,0 +1,243 @@
+// WellMind Health — Prisma schema (SQLite for local/dev, PostgreSQL for Vercel/production)
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+  // For PostgreSQL on Vercel (Supabase/Neon): provider = "postgresql" + DATABASE_URL=postgresql://...
+}
+
+// ── NextAuth & User Model ───────────────────────────────────
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?   // bcrypt hashed password
+  role          String    @default("READER") // SUPER_ADMIN, ADMIN, EDITOR_IN_CHIEF, MANAGING_EDITOR, HEALTH_EDITOR, MEDICAL_REVIEWER, AUTHOR, CONTRIBUTOR, READER
+  isSubscribed  Boolean   @default(true) // Auto-subscribed on registration
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+  articles      Article[] @relation("AuthorArticles")
+  reviews       Article[] @relation("ReviewerArticles")
+  auditLogs     AuditLog[]
+  bookmarks     Bookmark[]
+  enrollments   CourseEnrollment[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ── Editorial Domain ────────────────────────────────────────
+model Category {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  label       String
+  description String?
+  articles    Article[]
+  createdAt   DateTime  @default(now())
+}
+
+model Topic {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  label    String
+  articles Article[] @relation("ArticleTopics")
+}
+
+model Author {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  role      String
+  bio       String
+  avatar    String
+  articles  Article[]
+  createdAt DateTime  @default(now())
+}
+
+model Reviewer {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  credentials String
+  specialty   String
+  avatar      String
+  articles    Article[]
+  createdAt   DateTime  @default(now())
+}
+
+model Article {
+  id             String        @id @default(cuid())
+  slug           String        @unique
+  title          String
+  deck           String
+  excerpt        String
+  content        String        // JSON stringified blocks
+  keyTakeaways   String        // JSON array
+  faqs           String        // JSON array
+  references     String        // JSON array
+  featuredImage  String
+  imageAlt       String
+  imageCaption   String?
+  categoryId     String
+  category       Category      @relation(fields: [categoryId], references: [id])
+  authorId       String
+  author         Author        @relation(fields: [authorId], references: [id])
+  reviewerId     String?
+  reviewer       Reviewer?     @relation(fields: [reviewerId], references: [id])
+  userAuthorId   String?
+  userAuthor     User?         @relation("AuthorArticles", fields: [userAuthorId], references: [id])
+  userReviewerId String?
+  userReviewer   User?         @relation("ReviewerArticles", fields: [userReviewerId], references: [id])
+  topics         Topic[]       @relation("ArticleTopics")
+  publishedAt    DateTime?
+  updatedAt      DateTime      @updatedAt
+  lastReviewed   DateTime?
+  readingTime    Int           @default(5)
+  evidenceLevel  String        @default("General_education")
+  reviewStatus   String        @default("draft") // draft, pending_medical_review, medically_reviewed, published, scheduled
+  contentWarning String?
+  createdAt      DateTime      @default(now())
+  revisions      Revision[]
+  bookmarks      Bookmark[]
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, articleId])
+}
+
+model Revision {
+  id        String   @id @default(cuid())
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  changedBy String?
+  diff      String   // JSON
+  createdAt DateTime @default(now())
+}
+
+model Course {
+  id          String             @id @default(cuid())
+  slug        String             @unique
+  title       String
+  description String
+  duration    String
+  lessons     Int
+  audience    String
+  quizzes     Quiz[]
+  enrollments CourseEnrollment[]
+  createdAt   DateTime           @default(now())
+}
+
+model CourseEnrollment {
+  id               String   @id @default(cuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId         String
+  course           Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  completedLessons String   @default("[]") // JSON array of lesson indices
+  isCompleted      Boolean  @default(false)
+  quizScore        Int?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@unique([userId, courseId])
+}
+
+model Quiz {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  question  String
+  options   String   // JSON array
+  answer    Int      // 0-indexed
+  explain   String?
+  createdAt DateTime @default(now())
+}
+
+model Campaign {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  color       String   @default("bg-brand-500")
+  createdAt   DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String   @default("website")
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  resource  String
+  details   String?  // JSON string
+  createdAt DateTime @default(now())
+}
+
+model Redirect {
+  id        String   @id @default(cuid())
+  fromPath  String   @unique
+  toPath    String
+  code      Int      @default(301)
+  createdAt DateTime @default(now())
+}
+
+model SiteSetting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
