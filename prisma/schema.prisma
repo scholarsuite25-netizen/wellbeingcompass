@@ -1,5 +1,9 @@
-// WellMind Health — Prisma schema (SQLite for local/dev, PostgreSQL for Vercel/production)
+// WellMind Health — Prisma schema
 // Docs: https://pris.ly/d/prisma-schema
+// VERCEL DEPLOYMENT: Vercel requires PostgreSQL (Supabase/Neon) — auto-handled by scripts/prepare-prisma.js
+// Local dev: keep sqlite with DATABASE_URL=file:./dev.db → zero-config
+// Production: postgresql with DATABASE_URL=postgresql://... (Supabase pooler)
+// Quick switch: scripts/prepare-prisma.js does it automatically on vercel-build; or manually edit provider below
 
 generator client {
   provider = "prisma-client-js"
@@ -8,7 +12,7 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-  // For PostgreSQL on Vercel (Supabase/Neon): provider = "postgresql" + DATABASE_URL=postgresql://...
+  // Vercel: set to "postgresql" — see above
 }
 
 // ── NextAuth & User Model ───────────────────────────────────

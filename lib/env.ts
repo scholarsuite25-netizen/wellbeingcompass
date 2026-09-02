@@ -5,8 +5,11 @@ import { z } from "zod";
 
 const serverSchema = z.object({
   DATABASE_URL: z.string().min(1, "DATABASE_URL required — e.g. file:./dev.db or postgresql://..."),
-  NEXTAUTH_URL: z.string().url().optional(), // NextAuth infers in production, but we validate if set
+  NEXTAUTH_URL: z.string().url().optional(), // Vercel: falls back to VERCEL_URL if not set — see validateEnv
   NEXTAUTH_SECRET: z.string().min(32, "NEXTAUTH_SECRET must be >=32 chars — generate with: openssl rand -base64 32"),
+  VERCEL_URL: z.string().optional(), // Provided by Vercel: e.g. wellbeing-xxxx.vercel.app
+  VERCEL_ENV: z.enum(["production", "preview", "development"]).optional(),
+  VERCEL: z.string().optional(), // "1" on Vercel
   // Media storage
   MEDIA_STORAGE_PROVIDER: z.enum(["local", "s3", "r2"]).default("local"),
   MEDIA_STORAGE_BUCKET: z.string().optional(),
@@ -48,6 +51,12 @@ function validateEnv(): ServerEnv & ClientEnv {
   // Allow DATABASE_URL with quotes (as written in .env: "file:./dev.db")
   if (raw.DATABASE_URL) raw.DATABASE_URL = raw.DATABASE_URL.replace(/^"|"$/g, "").replace(/^'/g, "").replace(/'$/g, "");
 
+  // Vercel: infer NEXTAUTH_URL / NEXT_PUBLIC_SITE_URL from VERCEL_URL if not explicitly set
+  // Vercel provides VERCEL_URL without protocol (e.g. my-app.vercel.app)
+  if (!raw.NEXTAUTH_URL && raw.VERCEL_URL) raw.NEXTAUTH_URL = `https://${raw.VERCEL_URL}`;
+  if (!raw.NEXT_PUBLIC_SITE_URL && raw.VERCEL_URL) raw.NEXT_PUBLIC_SITE_URL = `https://${raw.VERCEL_URL}`;
+  if (!raw.NEXT_PUBLIC_SITE_URL && raw.NEXTAUTH_URL) raw.NEXT_PUBLIC_SITE_URL = raw.NEXTAUTH_URL;
+
   const serverParsed = serverSchema.safeParse(raw);
   const clientParsed = clientSchema.safeParse(raw);
 
@@ -66,17 +75,30 @@ function validateEnv(): ServerEnv & ClientEnv {
   if (raw.MEDIA_STORAGE_PROVIDER === "s3" && (!raw.AWS_ACCESS_KEY_ID || !raw.AWS_SECRET_ACCESS_KEY) && raw.NODE_ENV === "production") {
     errors.push("  • AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY: required when MEDIA_STORAGE_PROVIDER=s3 in production");
   }
+  // Vercel: DATABASE_URL must be postgresql (sqlite file: won't persist on ephemeral FS)
+  if ((raw.VERCEL_ENV === "production" || raw.VERCEL === "1") && raw.DATABASE_URL?.startsWith("file:")) {
+    errors.push("  • DATABASE_URL: Vercel production requires postgresql:// (Supabase/Neon) — file:./dev.db only for local dev. Set DATABASE_URL in Vercel Dashboard to your Supabase pooler URL and change prisma/schema.prisma provider to \"postgresql\" before deploy.");
+  }
+  if (raw.NODE_ENV === "production" && !raw.NEXTAUTH_SECRET) {
+    errors.push("  • NEXTAUTH_SECRET: required in production — set in Vercel Dashboard (32+ chars)");
+  }
 
   if (errors.length > 0) {
     const msg = `❌ Invalid environment variables:\n${errors.join("\n")}\n\nSee .env.example and docs. In development, missing optional vars use safe defaults; required vars must be set.`;
-    // In production, crash fast. In dev, log and continue with defaults where possible.
+    // In production, crash fast. In dev, log and continue with safe defaults
     if (raw.NODE_ENV === "production") throw new Error(msg);
     console.warn(msg);
-    // Still return best-effort parsed (with defaults) so dev isn't blocked
+    const devDefaults: Partial<ServerEnv & ClientEnv> = {
+      DATABASE_URL: raw.DATABASE_URL || "file:./dev.db",
+      NEXTAUTH_SECRET: raw.NEXTAUTH_SECRET || "dev-secret-change-in-production-32chars-min-123456",
+      NEXTAUTH_URL: raw.NEXTAUTH_URL || raw.VERCEL_URL ? `https://${raw.VERCEL_URL}` : "http://localhost:3000",
+      NEXT_PUBLIC_SITE_URL: raw.NEXT_PUBLIC_SITE_URL || raw.NEXTAUTH_URL || (raw.VERCEL_URL ? `https://${raw.VERCEL_URL}` : "http://localhost:3000"),
+      NEXT_PUBLIC_SITE_NAME: raw.NEXT_PUBLIC_SITE_NAME || "Wellbeing Compass",
+    };
     return {
-      ...(serverParsed.success ? serverParsed.data : (serverSchema.parse({}) as ServerEnv)),
-      ...(clientParsed.success ? clientParsed.data : (clientSchema.parse({}) as ClientEnv)),
-      // overlay raw for any that did parse even if overall failed
+      ...(serverParsed.success ? serverParsed.data : {} as ServerEnv),
+      ...(clientParsed.success ? clientParsed.data : {} as ClientEnv),
+      ...devDefaults,
       ...raw,
     } as ServerEnv & ClientEnv;
   }
