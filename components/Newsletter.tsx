@@ -15,9 +15,9 @@ export function Newsletter({ compact }: { compact?: boolean }) {
       const data = await res.json();
       if(!res.ok) throw new Error(data.error || "Failed");
       // Keep local fallback for offline demo
-      const list = JSON.parse(localStorage.getItem("wellmind_subscribers")||"[]");
+      const list = JSON.parse(localStorage.getItem("wellbeing_compass_subscribers")||"[]");
       list.push({ email, date: new Date().toISOString(), provider: data.provider });
-      localStorage.setItem("wellmind_subscribers", JSON.stringify(list));
+      localStorage.setItem("wellbeing_compass_subscribers", JSON.stringify(list));
       setStatus("success"); setDetail(`Subscribed via ${data.provider}. Check your inbox (console in dev).`); setEmail("");
     } catch(err:any){
       setStatus("error"); setDetail(err.message || "Could not subscribe. Try again.");

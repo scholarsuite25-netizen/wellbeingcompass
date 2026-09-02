@@ -10,7 +10,7 @@ export default function Page(){
           <li>Reach a trusted person — family, friend, teacher, colleague or community leader — and stay with someone you trust.</li>
           <li>If you are worried about someone else, encourage them to seek professional help and stay with them where safe.</li>
         </ul>
-        <p className="text-xs text-muted mt-2">WellMind Health does not provide emergency services, diagnosis, or real-time crisis support.</p>
+        <p className="text-xs text-muted mt-2">Wellbeing Compass does not provide emergency services, diagnosis, or real-time crisis support.</p>
       </div>
       <section className="mt-6 prose-wellmind text-sm">
         <h2>Support options</h2>

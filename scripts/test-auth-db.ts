@@ -11,7 +11,7 @@ import {
 
 async function runTests() {
   console.log("=================================================");
-  console.log("🧪 WELLMIND HEALTH — DATABASE, AUTH & RBAC TESTS");
+  console.log("🧪 WELLBEING COMPASS — DATABASE, AUTH & RBAC TESTS");
   console.log("=================================================\n");
 
   let passed = 0;
@@ -44,19 +44,19 @@ async function runTests() {
   // ── TEST 2: Password Hashing & Credentials Verification ──────
   console.log("\n▶ 2. Testing Password Hashing & Bcrypt Authentication...");
   const testUser = await prisma.user.findUnique({
-    where: { email: "superadmin@wellmind.health" },
+    where: { email: "superadmin@wellbeingcompass.org" },
   });
-  assert(Boolean(testUser), "Found seeded superadmin account");
+  assert(Boolean(testUser), "Found seeded superadmin account (superadmin@wellbeingcompass.org)");
 
-  const isPasswordValid = await bcrypt.compare("WellMind123!", testUser?.password || "");
-  assert(isPasswordValid, "Password bcrypt compare verified with 'WellMind123!'");
+  const isPasswordValid = await bcrypt.compare("Compass123!", testUser?.password || "");
+  assert(isPasswordValid, "Password bcrypt compare verified with 'Compass123!'");
 
   const isWrongPasswordBlocked = !(await bcrypt.compare("WrongPassword!", testUser?.password || ""));
   assert(isWrongPasswordBlocked, "Invalid password properly rejected by bcrypt");
 
   // ── TEST 3: User Registration & Auto-Subscription ────────────
   console.log("\n▶ 3. Testing Registration & Auto-Subscription Mechanism...");
-  const newEmail = `test.reader.${Date.now()}@wellmind.health`;
+  const newEmail = `test.reader.${Date.now()}@wellbeingcompass.org`;
   const hashedNewPw = await bcrypt.hash("SecurePass123!", 10);
 
   const registeredUser = await prisma.user.create({

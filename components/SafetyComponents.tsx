@@ -5,7 +5,7 @@ export function DisclaimerBox() {
   return (
     <aside className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed" aria-label="Medical disclaimer">
       <p className="font-semibold flex items-center gap-2"><Info className="h-4 w-4"/> Educational information only</p>
-      <p className="text-muted mt-1">WellMind Health articles are for education and awareness. They do not provide diagnosis, replace professional medical advice, or cover all risks. If you have symptoms, concerns, or an emergency, contact a qualified healthcare professional or your local emergency services.</p>
+      <p className="text-muted mt-1">Wellbeing Compass articles are for education and awareness. They do not provide clinical diagnosis, replace professional medical advice, or cover all risks. If you have symptoms, concerns, or an emergency, contact a qualified healthcare professional or your local emergency services.</p>
     </aside>
   )
 }

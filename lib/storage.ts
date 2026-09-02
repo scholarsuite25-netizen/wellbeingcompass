@@ -8,7 +8,7 @@ export type StorageProvider = typeof env.MEDIA_STORAGE_PROVIDER;
 export function getStorageConfig() {
   return {
     provider: env.MEDIA_STORAGE_PROVIDER,
-    bucket: env.MEDIA_STORAGE_BUCKET || env.AWS_S3_BUCKET || "wellmind-media",
+    bucket: env.MEDIA_STORAGE_BUCKET || env.AWS_S3_BUCKET || "wellbeing-compass-media",
     region: env.AWS_REGION || "us-east-1",
     hasCredentials: Boolean(env.AWS_ACCESS_KEY_ID && env.AWS_SECRET_ACCESS_KEY),
   };

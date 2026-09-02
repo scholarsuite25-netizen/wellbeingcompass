@@ -3,20 +3,20 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { HeartPulse, KeyRound, ShieldCheck, UserCheck, ArrowRight } from "lucide-react";
+import { Compass, KeyRound, ArrowRight } from "lucide-react";
 
 const DEMO_ACCOUNTS = [
-  { role: "SUPER_ADMIN", email: "superadmin@wellmind.health", label: "Super Admin (Full Access)" },
-  { role: "ADMIN", email: "admin@wellmind.health", label: "Administrator (Site Management)" },
-  { role: "EDITOR_IN_CHIEF", email: "editor@wellmind.health", label: "Editor-in-Chief (Publishing)" },
-  { role: "MEDICAL_REVIEWER", email: "reviewer@wellmind.health", label: "Dr. Chioma Nwosu (Medical Reviewer)" },
-  { role: "AUTHOR", email: "author@wellmind.health", label: "Sarah Nwachukwu (Author)" },
-  { role: "READER", email: "reader@wellmind.health", label: "Chidi Okafor (Subscribed Reader)" },
+  { role: "SUPER_ADMIN", email: "superadmin@wellbeingcompass.org", label: "Super Admin (Full Access)" },
+  { role: "ADMIN", email: "admin@wellbeingcompass.org", label: "Administrator (Site Management)" },
+  { role: "EDITOR_IN_CHIEF", email: "editor@wellbeingcompass.org", label: "Editor-in-Chief (Publishing)" },
+  { role: "MEDICAL_REVIEWER", email: "reviewer@wellbeingcompass.org", label: "Dr. Chioma Nwosu (Medical Reviewer)" },
+  { role: "AUTHOR", email: "author@wellbeingcompass.org", label: "Sarah Nwachukwu (Author)" },
+  { role: "READER", email: "reader@wellbeingcompass.org", label: "Chidi Okafor (Subscribed Reader)" },
 ];
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("superadmin@wellmind.health");
-  const [password, setPassword] = useState("WellMind123!");
+  const [email, setEmail] = useState("superadmin@wellbeingcompass.org");
+  const [password, setPassword] = useState("Compass123!");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function LoginPage() {
 
   function selectDemoAccount(accEmail: string) {
     setEmail(accEmail);
-    setPassword("WellMind123!");
+    setPassword("Compass123!");
     setErr("");
   }
 
@@ -47,10 +47,10 @@ export default function LoginPage() {
     <div className="mx-auto max-w-lg px-4 py-10">
       <div className="bg-white border border-border rounded-3xl p-6 md:p-8 shadow-elevated">
         <div className="flex items-center gap-2 mb-2">
-          <span className="h-8 w-8 rounded-xl bg-brand-500 text-white grid place-items-center">
-            <HeartPulse className="h-4 w-4" />
+          <span className="h-8 w-8 rounded-xl bg-brand-500 text-white grid place-items-center shadow-sm">
+            <Compass className="h-4 w-4" />
           </span>
-          <span className="font-display font-extrabold text-xl text-brand-700">WellMind Health</span>
+          <span className="font-display font-extrabold text-xl text-brand-700">Wellbeing Compass</span>
         </div>
 
         <h1 className="font-display font-bold text-2xl text-brand-700 mt-2">Sign In to Your Account</h1>
@@ -80,7 +80,7 @@ export default function LoginPage() {
               </button>
             ))}
           </div>
-          <p className="text-[11px] text-muted mt-2">Default demo password for all accounts: <code className="bg-white px-1 py-0.5 rounded border">WellMind123!</code></p>
+          <p className="text-[11px] text-muted mt-2">Default demo password for all accounts: <code className="bg-white px-1 py-0.5 rounded border">Compass123!</code></p>
         </div>
 
         <form onSubmit={onSubmit} className="mt-6 space-y-3.5">
@@ -122,7 +122,7 @@ export default function LoginPage() {
         </form>
 
         <div className="mt-6 pt-4 border-t border-border flex items-center justify-between text-xs text-muted">
-          <span>New to WellMind?</span>
+          <span>New to Wellbeing Compass?</span>
           <Link href="/register" className="text-brand-600 font-bold hover:underline">
             Create Free Account →
           </Link>

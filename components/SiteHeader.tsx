@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Search, Menu, X, HeartPulse, ShieldAlert, LogOut, LogIn } from "lucide-react";
+import { Search, Menu, X, Compass, ShieldAlert, LogOut, LogIn } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { Button } from "./ui/Button";
 
@@ -31,11 +31,13 @@ export function SiteHeader() {
       </div>
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex items-center justify-between h-16 gap-4">
-          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="WellMind Health home">
-            <span className="h-9 w-9 rounded-xl bg-brand-500 text-white grid place-items-center"><HeartPulse className="h-5 w-5" /></span>
+          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Wellbeing Compass home">
+            <span className="h-9 w-9 rounded-xl bg-brand-500 text-white grid place-items-center shadow-sm">
+              <Compass className="h-5 w-5" />
+            </span>
             <span className="leading-none">
-              <span className="block font-display font-extrabold text-[1.35rem] tracking-tight text-brand-700">WellMind<span className="text-brand-500"> Health</span></span>
-              <span className="block text-[10px] tracking-[0.18em] uppercase text-muted font-semibold -mt-0.5">Understand • Prevent • Heal • Thrive</span>
+              <span className="block font-display font-extrabold text-[1.35rem] tracking-tight text-brand-700">Wellbeing<span className="text-brand-500"> Compass</span></span>
+              <span className="block text-[10px] tracking-[0.16em] uppercase text-muted font-semibold -mt-0.5">Understand • Prevent • Heal • Thrive</span>
             </span>
           </Link>
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-1 text-sm font-medium">

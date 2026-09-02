@@ -17,7 +17,7 @@ export function QuizInteractive({ quizzes, courseSlug }: { quizzes: Q[]; courseS
     if(idx===quizzes.length-1){
       setDone(true);
       const pct = Math.round(((picked===q.answer?score+1:score)/quizzes.length)*100);
-      const key = `wellmind_progress_${courseSlug}`;
+      const key = `wellbeing_compass_progress_${courseSlug}`;
       const prev = JSON.parse(localStorage.getItem(key)||"{}");
       prev.best = Math.max(prev.best||0, pct);
       prev.completed = true;

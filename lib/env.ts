@@ -16,7 +16,7 @@ const serverSchema = z.object({
   AWS_S3_BUCKET: z.string().optional(),
   // Email
   EMAIL_PROVIDER: z.enum(["console", "resend"]).default("console"),
-  EMAIL_FROM: z.string().email().default("noreply@wellmind.health"),
+  EMAIL_FROM: z.string().email().default("noreply@wellbeingcompass.org"),
   CONTACT_TO_EMAIL: z.string().email().optional(),
   RESEND_API_KEY: z.string().optional(),
   // Analytics (privacy-conscious)
@@ -32,7 +32,7 @@ const serverSchema = z.object({
 
 const clientSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
-  NEXT_PUBLIC_SITE_NAME: z.string().default("WellMind Health"),
+  NEXT_PUBLIC_SITE_NAME: z.string().default("Wellbeing Compass"),
 });
 
 type ServerEnv = z.infer<typeof serverSchema>;

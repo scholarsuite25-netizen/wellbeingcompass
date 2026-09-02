@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { HeartPulse, CheckCircle2, Mail, Lock, User as UserIcon, ShieldCheck, ArrowRight } from "lucide-react";
+import { Compass, CheckCircle2, Mail, Lock, User as UserIcon, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -58,10 +58,10 @@ export default function RegisterPage() {
     <div className="mx-auto max-w-lg px-4 py-12">
       <div className="bg-white border border-border rounded-3xl p-6 md:p-8 shadow-elevated">
         <div className="flex items-center gap-2 mb-2">
-          <span className="h-8 w-8 rounded-xl bg-brand-500 text-white grid place-items-center">
-            <HeartPulse className="h-4 w-4" />
+          <span className="h-8 w-8 rounded-xl bg-brand-500 text-white grid place-items-center shadow-sm">
+            <Compass className="h-4 w-4" />
           </span>
-          <span className="font-display font-extrabold text-xl text-brand-700">WellMind Health</span>
+          <span className="font-display font-extrabold text-xl text-brand-700">Wellbeing Compass</span>
         </div>
 
         <h1 className="font-display font-bold text-2xl text-brand-700 mt-2">Create Your Account</h1>

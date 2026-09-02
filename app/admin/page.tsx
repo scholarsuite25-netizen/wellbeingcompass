@@ -31,7 +31,7 @@ export default function AdminPage() {
         <div>
           <h1 className="font-display font-bold text-2xl text-brand-700">Editorial & CMS Dashboard</h1>
           <p className="text-xs md:text-sm text-muted mt-0.5">
-            WellMind Health publishing workflow and medical governance pipeline.
+            Wellbeing Compass publishing workflow and medical governance pipeline.
           </p>
         </div>
         <div className="flex items-center gap-2">

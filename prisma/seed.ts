@@ -55,26 +55,33 @@ async function main() {
   }
 
   // 5. Test Users Across All Roles
-  const pw = await bcrypt.hash("WellMind123!", 10);
+  const pw = await bcrypt.hash("Compass123!", 10);
+  const oldPw = await bcrypt.hash("WellMind123!", 10);
   const users = [
-    { email: "superadmin@wellmind.health", name: "Executive Super Admin", role: "SUPER_ADMIN" },
-    { email: "admin@wellmind.health", name: "Platform Administrator", role: "ADMIN" },
-    { email: "editor@wellmind.health", name: "Daniel Owusu (Editor-in-Chief)", role: "EDITOR_IN_CHIEF" },
-    { email: "managing@wellmind.health", name: "Managing Editor", role: "MANAGING_EDITOR" },
-    { email: "medicaleditor@wellmind.health", name: "Health/Medical Editor", role: "HEALTH_EDITOR" },
-    { email: "reviewer@wellmind.health", name: "Dr. Chioma Nwosu (Medical Reviewer)", role: "MEDICAL_REVIEWER" },
-    { email: "dr.bello@wellmind.health", name: "Dr. Ayodele Bello (Medical Reviewer)", role: "MEDICAL_REVIEWER" },
-    { email: "author@wellmind.health", name: "Sarah Nwachukwu (Author)", role: "AUTHOR" },
-    { email: "contributor@wellmind.health", name: "James Obi (Contributor)", role: "CONTRIBUTOR" },
-    { email: "reader@wellmind.health", name: "Chidi Okafor (Subscribed Reader)", role: "READER" },
+    { email: "superadmin@wellbeingcompass.org", name: "Executive Super Admin", role: "SUPER_ADMIN", pw },
+    { email: "admin@wellbeingcompass.org", name: "Platform Administrator", role: "ADMIN", pw },
+    { email: "editor@wellbeingcompass.org", name: "Daniel Owusu (Editor-in-Chief)", role: "EDITOR_IN_CHIEF", pw },
+    { email: "managing@wellbeingcompass.org", name: "Managing Editor", role: "MANAGING_EDITOR", pw },
+    { email: "medicaleditor@wellbeingcompass.org", name: "Health/Medical Editor", role: "HEALTH_EDITOR", pw },
+    { email: "reviewer@wellbeingcompass.org", name: "Dr. Chioma Nwosu (Medical Reviewer)", role: "MEDICAL_REVIEWER", pw },
+    { email: "dr.bello@wellbeingcompass.org", name: "Dr. Ayodele Bello (Medical Reviewer)", role: "MEDICAL_REVIEWER", pw },
+    { email: "author@wellbeingcompass.org", name: "Sarah Nwachukwu (Author)", role: "AUTHOR", pw },
+    { email: "contributor@wellbeingcompass.org", name: "James Obi (Contributor)", role: "CONTRIBUTOR", pw },
+    { email: "reader@wellbeingcompass.org", name: "Chidi Okafor (Subscribed Reader)", role: "READER", pw },
+    // Aliases for backwards compatibility
+    { email: "superadmin@wellmind.health", name: "Executive Super Admin", role: "SUPER_ADMIN", pw: oldPw },
+    { email: "admin@wellmind.health", name: "Platform Administrator", role: "ADMIN", pw: oldPw },
+    { email: "editor@wellmind.health", name: "Daniel Owusu (Editor-in-Chief)", role: "EDITOR_IN_CHIEF", pw: oldPw },
+    { email: "reviewer@wellmind.health", name: "Dr. Chioma Nwosu (Medical Reviewer)", role: "MEDICAL_REVIEWER", pw: oldPw },
+    { email: "author@wellmind.health", name: "Sarah Nwachukwu (Author)", role: "AUTHOR", pw: oldPw },
+    { email: "reader@wellmind.health", name: "Chidi Okafor (Subscribed Reader)", role: "READER", pw: oldPw },
   ];
   for (const u of users) {
     await prisma.user.upsert({
       where: { email: u.email },
-      update: { role: u.role, name: u.name },
-      create: { ...u, password: pw, isSubscribed: true },
+      update: { role: u.role, name: u.name, password: u.pw },
+      create: { email: u.email, name: u.name, role: u.role, password: u.pw, isSubscribed: true },
     });
-    // Auto-subscribe to newsletter table
     await prisma.newsletterSubscriber.upsert({
       where: { email: u.email },
       update: {},

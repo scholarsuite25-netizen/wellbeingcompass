@@ -8,13 +8,13 @@ import { env } from "@/lib/env";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
-  title: { default: "WellMind Health — Understand. Prevent. Heal. Thrive.", template: "%s — WellMind Health" },
-  description: "Trusted education on mental health, general health, prevention, relationships, family, workplace and environmental wellbeing. Evidence-informed, compassionate, accessible.",
+  title: { default: "Wellbeing Compass — Understand. Prevent. Heal. Thrive.", template: "%s — Wellbeing Compass" },
+  description: "Your trusted guide to mental health, general health, prevention, relationships, family, workplace and environmental wellbeing. Evidence-informed, compassionate, accessible.",
   openGraph: {
     type: "website",
-    siteName: "WellMind Health",
-    title: "WellMind Health — Understand. Prevent. Heal. Thrive.",
-    description: "Trusted health education that is evidence-informed and human.",
+    siteName: "Wellbeing Compass",
+    title: "Wellbeing Compass — Understand. Prevent. Heal. Thrive.",
+    description: "Your trusted health and wellbeing guide — evidence-informed, human, and accessible.",
   },
   robots: { index: true, follow: true },
 };

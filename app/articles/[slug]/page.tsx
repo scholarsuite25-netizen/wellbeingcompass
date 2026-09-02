@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const a = getArticle(params.slug);
   if(!a) return {};
   return {
-    title: `${a.title} | WellMind Health`,
+    title: `${a.title} | Wellbeing Compass`,
     description: a.excerpt,
     openGraph: {
       title: a.title,

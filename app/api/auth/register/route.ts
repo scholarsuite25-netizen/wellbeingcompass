@@ -71,12 +71,12 @@ export async function POST(req: Request) {
       const welcomeSubject = `Welcome to ${env.NEXT_PUBLIC_SITE_NAME}, ${user.name || "Friend"}!`;
       const welcomeBody = `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #17212B; line-height: 1.6;">
-          <h1 style="color: #0D2A4A; font-size: 24px;">Welcome to WellMind Health!</h1>
+          <h1 style="color: #0D2A4A; font-size: 24px;">Welcome to Wellbeing Compass!</h1>
           <p>Hi ${user.name || "there"},</p>
           <p>Thank you for joining our community. Your account is ready, and you have been automatically subscribed to our evidence-informed weekly health newsletter.</p>
           
           <div style="background-color: #EAF3FB; border-left: 4px solid #1565C0; padding: 16px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #0D2A4A;">📚 Recommended Starter Articles For You:</h3>
+            <h3 style="margin-top: 0; color: #0D2A4A;">🧭 Recommended Starter Articles For You:</h3>
             <ul style="padding-left: 20px; margin-bottom: 0;">
               <li><a href="${env.NEXT_PUBLIC_SITE_URL}/articles/understanding-everyday-anxiety" style="color: #1565C0; font-weight: bold;">Understanding Everyday Anxiety: When Worry Is Normal and When to Seek Support</a></li>
               <li><a href="${env.NEXT_PUBLIC_SITE_URL}/articles/sleep-hygiene-guide" style="color: #1565C0; font-weight: bold;">Sleep Hygiene: A Simple Guide to Better Nights</a></li>
@@ -87,7 +87,7 @@ export async function POST(req: Request) {
           <p>You can also enroll in our free guided training courses such as <b>Stress Management 101</b> at <a href="${env.NEXT_PUBLIC_SITE_URL}/training" style="color: #1565C0;">${env.NEXT_PUBLIC_SITE_URL}/training</a>.</p>
           
           <p style="font-size: 12px; color: #5E6B76; margin-top: 30px; border-top: 1px solid #D9E2EA; padding-top: 10px;">
-            <b>Educational notice:</b> WellMind Health provides trusted health and mental wellbeing education, not personalized clinical diagnosis or emergency care. If you need urgent support, visit our <a href="${env.NEXT_PUBLIC_SITE_URL}/help">Help & Crisis resources</a>.
+            <b>Educational notice:</b> Wellbeing Compass provides trusted health and mental wellbeing education, not personalized clinical diagnosis or emergency care. If you need urgent support, visit our <a href="${env.NEXT_PUBLIC_SITE_URL}/help">Help & Crisis resources</a>.
           </p>
         </div>
       `;
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
         to: email,
         subject: welcomeSubject,
         html: welcomeBody,
-        text: `Welcome to WellMind Health, ${user.name}! Your account is active and you are auto-subscribed to our health updates.`,
+        text: `Welcome to Wellbeing Compass, ${user.name}! Your account is active and you are auto-subscribed to our health updates.`,
       });
     } catch (emailErr) {
       console.error("[register] welcome email error:", emailErr);
