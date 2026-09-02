@@ -23,6 +23,8 @@ const serverSchema = z.object({
   ANALYTICS_PROVIDER: z.enum(["none", "plausible", "ga"]).default("none"),
   ANALYTICS_DOMAIN: z.string().optional(),
   NEXT_PUBLIC_ANALYTICS_DOMAIN: z.string().optional(),
+  // Supabase (optional if using Supabase client/storage)
+  SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
   // Rate limiting
   RATE_LIMIT_WINDOW_MS: z.coerce.number().default(60000),
   RATE_LIMIT_MAX: z.coerce.number().default(60),
@@ -33,6 +35,8 @@ const serverSchema = z.object({
 const clientSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
   NEXT_PUBLIC_SITE_NAME: z.string().default("Wellbeing Compass"),
+  NEXT_PUBLIC_SUPABASE_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional(),
 });
 
 type ServerEnv = z.infer<typeof serverSchema>;
