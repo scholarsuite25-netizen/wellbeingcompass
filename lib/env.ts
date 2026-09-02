@@ -5,6 +5,7 @@ import { z } from "zod";
 
 const serverSchema = z.object({
   DATABASE_URL: z.string().min(1, "DATABASE_URL required — e.g. file:./dev.db or postgresql://..."),
+  DIRECT_URL: z.string().optional(), // Supabase direct (5432) for Prisma migrations — pooler pgbouncer can't run DDL
   NEXTAUTH_URL: z.string().url().optional(), // Vercel: falls back to VERCEL_URL if not set — see validateEnv
   NEXTAUTH_SECRET: z.string().min(32, "NEXTAUTH_SECRET must be >=32 chars — generate with: openssl rand -base64 32"),
   VERCEL_URL: z.string().optional(), // Provided by Vercel: e.g. wellbeing-xxxx.vercel.app
