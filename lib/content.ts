@@ -29,16 +29,16 @@ export type Article = {
 };
 
 export const authors: Author[] = [
-  { slug: "amina-okoro", name: "Amina Okoro", role: "Public Health Specialist, MPH", bio: "Nigerian public-health writer and researcher focused on prevention, health equity, and community wellness.", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop" },
-  { slug: "daniel-owusu", name: "Daniel Owusu", role: "Senior Medical Editor", bio: "Health journalist and editor with 12 years in African health communications and plain-language medical education.", avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" },
-  { slug: "sarah-lee", name: "Sarah Nwachukwu", role: "Mental Health & Wellbeing Educator", bio: "Lagos-based counselling educator writing on emotional resilience, relationships, and youth coping strategies.", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" },
-  { slug: "james-obi", name: "James Obi", role: "Family & Adolescent Contributor", bio: "Parenting educator and community advocate supporting family wellbeing and youth mentorship across Nigeria.", avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" },
+  { slug: "amina-okoro", name: "Amina Okoro", role: "Public Health Specialist, MPH", bio: "Nigerian public-health writer and researcher focused on prevention, health equity, and community wellness.", avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop" },
+  { slug: "daniel-owusu", name: "Daniel Owusu", role: "Senior Medical Editor", bio: "Health journalist and editor with 12 years in African health communications and plain-language medical education.", avatar: "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=400&h=400&fit=crop" },
+  { slug: "sarah-lee", name: "Sarah Nwachukwu", role: "Mental Health & Wellbeing Educator", bio: "Lagos-based counselling educator writing on emotional resilience, relationships, and youth coping strategies.", avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop" },
+  { slug: "james-obi", name: "James Obi", role: "Family & Adolescent Contributor", bio: "Parenting educator and community advocate supporting family wellbeing and youth mentorship across Nigeria.", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" },
 ];
 
 export const reviewers: Reviewer[] = [
-  { slug: "dr-ayodele-bello", name: "Dr Ayodele Bello", credentials: "MBBS, FWACP", specialty: "Family & Community Medicine", avatar: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=400&fit=crop" },
-  { slug: "dr-chioma-nwosu", name: "Dr Chioma Nwosu", credentials: "MBBS, MSc Public Health", specialty: "Public Health & Epidemiology", avatar: "https://images.unsplash.com/photo-1594824813626-d34e6d4ba4c8?w=400&h=400&fit=crop" },
-  { slug: "dr-emeka-udo", name: "Dr Emeka Udo", credentials: "PhD Clinical Psychology", specialty: "Clinical Psychology & Neuropsychiatry", avatar: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=400&fit=crop" },
+  { slug: "dr-ayodele-bello", name: "Dr Ayodele Bello", credentials: "MBBS, FWACP", specialty: "Family & Community Medicine", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" },
+  { slug: "dr-chioma-nwosu", name: "Dr Chioma Nwosu", credentials: "MBBS, MSc Public Health", specialty: "Public Health & Epidemiology", avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop" },
+  { slug: "dr-emeka-udo", name: "Dr Emeka Udo", credentials: "PhD Clinical Psychology", specialty: "Clinical Psychology & Neuropsychiatry", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" },
 ];
 
 export const categories: { slug: string; label: Category; description: string; href: string }[] = [
@@ -63,7 +63,7 @@ export const articles: Article[] = [
     topics: ["Anxiety & Stress", "Coping Skills", "Awareness"],
     author: authors[2],
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=1200&h=700&fit=crop",
     imageAlt: "Young Nigerian woman sitting calmly in a bright room reflecting",
     imageCaption: "Calm routines, supportive relationships and healthy habits all influence how we experience anxiety. Photo is illustrative.",
     content: [
@@ -102,7 +102,7 @@ export const articles: Article[] = [
     topics: ["Sleep", "Prevention", "Healthy Habits"],
     author: authors[0],
     reviewer: reviewers[0],
-    featuredImage: "https://images.unsplash.com/photo-1520206183501-b80df61043c2?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=1200&h=700&fit=crop",
     imageAlt: "Serene, modern bedroom in natural daylight",
     content: [
       { type: "paragraph", text: "Sleep affects nearly every system in the body. Small environmental and behavioral changes often improve sleep quality more sustainably than quick fixes." },
@@ -132,7 +132,7 @@ export const articles: Article[] = [
     topics: ["Communication", "Trust", "Family"],
     author: authors[2],
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian couple engaging in thoughtful conversation in a warm cafe",
     content: [
       { type: "paragraph", text: "Relationship wellbeing grows from small, repeated actions: how we listen, how we handle disagreement, and how we show care when things are difficult." },
@@ -158,7 +158,7 @@ export const articles: Article[] = [
     topics: ["Screening", "Primary Care", "Healthy Choices"],
     author: authors[1],
     reviewer: reviewers[1],
-    featuredImage: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian male doctor reviewing health chart in a modern medical clinic",
     content: [{ type: "paragraph", text: "Preventive care helps identify risks early when support is often more effective. This includes regular visits, blood pressure checks, immunizations and conversations about lifestyle." }],
     keyTakeaways: ["Know your numbers: blood pressure, and risk factors relevant to your age and history.", "Bring a list of medicines and questions to appointments."],
@@ -179,7 +179,7 @@ export const articles: Article[] = [
     topics: ["Parenting", "Adolescents", "Connection"],
     author: authors[3],
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian parent and teenager conversing comfortably outdoors in a garden",
     content: [{ type: "paragraph", text: "Adolescents thrive when they feel both connected and respected. Consistent routines, open conversation and age-appropriate autonomy help." }],
     keyTakeaways: ["Stay curious, not interrogative.", "Teach coping by modeling it."],
@@ -200,7 +200,7 @@ export const articles: Article[] = [
     topics: ["Burnout", "Boundaries", "Leadership"],
     author: authors[1],
     reviewer: reviewers[1],
-    featuredImage: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian professional working at a desk in a bright, modern corporate office",
     content: [{ type: "paragraph", text: "Burnout is linked to prolonged workplace stress. It is not simply personal weakness; environment, workload, autonomy and recognition all matter." }],
     keyTakeaways: ["Boundaries are not selfish; they sustain performance.", "Managers shape norms by modeling rest and fairness."],
@@ -220,7 +220,7 @@ export const articles: Article[] = [
     category: "Environment & Health",
     topics: ["Air Quality", "Children", "Prevention"],
     author: authors[0],
-    featuredImage: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1534385842125-8c9ad0bd123c?w=1200&h=700&fit=crop",
     imageAlt: "City morning view with soft natural daylight",
     content: [{ type: "paragraph", text: "Ventilation, cooking practices, tobacco smoke and traffic exposure all affect air you breathe daily." }],
     keyTakeaways: ["Ventilate while cooking and avoid indoor smoking.", "Check local air quality when possible."],

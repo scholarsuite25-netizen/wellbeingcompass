@@ -24,6 +24,7 @@ model User {
   image         String?
   password      String?   // bcrypt hashed password
   role          String    @default("READER") // SUPER_ADMIN, ADMIN, EDITOR_IN_CHIEF, MANAGING_EDITOR, HEALTH_EDITOR, MEDICAL_REVIEWER, AUTHOR, CONTRIBUTOR, READER
+  phone         String?   // For WhatsApp notifications (E.164 format e.g. +234...)
   isSubscribed  Boolean   @default(true) // Auto-subscribed on registration
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -244,4 +245,15 @@ model SiteSetting {
   key       String   @unique
   value     String
   updatedAt DateTime @updatedAt
+}
+
+// ── Analytics ──────────────────────────────────────────────
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  referrer  String?
+  ipHash    String?
+  createdAt DateTime @default(now())
+
+  @@index([path, createdAt])
 }
