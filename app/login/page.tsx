@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Compass, KeyRound, ArrowRight } from "lucide-react";
 
 const DEMO_ACCOUNTS = [
-  { role: "SUPER_ADMIN", email: "superadmin@wellbeingcompass.org", label: "Super Admin (Full Access)" },
   { role: "ADMIN", email: "admin@wellbeingcompass.org", label: "Administrator (Site Management)" },
   { role: "EDITOR_IN_CHIEF", email: "editor@wellbeingcompass.org", label: "Editor-in-Chief (Publishing)" },
   { role: "MEDICAL_REVIEWER", email: "reviewer@wellbeingcompass.org", label: "Dr. Chioma Nwosu (Medical Reviewer)" },
@@ -15,7 +14,7 @@ const DEMO_ACCOUNTS = [
 ];
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("superadmin@wellbeingcompass.org");
+  const [email, setEmail] = useState("admin@wellbeingcompass.org");
   const [password, setPassword] = useState("Compass123!");
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState(false);

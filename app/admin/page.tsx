@@ -5,7 +5,6 @@ import Link from "next/link";
 import { PlusCircle, ShieldCheck, FileText, CheckCircle2, Clock, Users, ArrowRight } from "lucide-react";
 
 const ROLES = [
-  "Super Admin",
   "Administrator",
   "Editor-in-Chief",
   "Managing Editor",

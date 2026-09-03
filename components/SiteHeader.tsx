@@ -68,13 +68,9 @@ export function SiteHeader() {
               </Link>
               <Link href="/newsletter" className="hidden md:inline-flex bg-[#0D2A4A] text-white font-semibold px-4 py-1.5 rounded-full text-[13px] hover:bg-[#0A223C] transition">Subscribe</Link>
               {session ? (
-                <>
-                  <span className="hidden xl:inline-flex text-[11px] font-bold bg-slate-900 text-white rounded-full px-2.5 py-1">{(session.user as any)?.role}</span>
-                  <Link href="/admin" className="hidden lg:inline-flex text-[13px] font-semibold text-slate-700 hover:text-[#0D2A4A] px-2.5">CMS</Link>
-                  <button onClick={()=>signOut()} className="hidden lg:inline-flex items-center gap-1 text-[13px] font-medium text-slate-500 hover:text-red-600 transition">
-                    <LogOut className="h-3.5 w-3.5"/>Out
-                  </button>
-                </>
+                <button onClick={()=>signOut()} className="hidden lg:inline-flex items-center gap-1 text-[13px] font-medium text-slate-500 hover:text-red-600 transition">
+                  <LogOut className="h-3.5 w-3.5"/>Out
+                </button>
               ) : (
                 <Link href="/login" className="hidden lg:inline-flex items-center gap-1 bg-white border border-slate-200 text-slate-700 px-3.5 py-1.5 rounded-full text-[13px] font-semibold hover:border-slate-300 hover:text-[#0D2A4A] transition">
                   Sign in
@@ -102,7 +98,7 @@ export function SiteHeader() {
             <div className="mt-2.5 flex gap-1.5">
               <Link href="/help" onClick={()=>setOpen(false)} className="flex-1 py-2 rounded-full bg-accent-400 text-ink font-bold text-sm text-center">Help</Link>
               <Link href="/newsletter" onClick={()=>setOpen(false)} className="flex-1 py-2 rounded-full bg-[#0D2A4A] text-white font-semibold text-sm text-center">Subscribe</Link>
-              {session ? <Link href="/admin" onClick={()=>setOpen(false)} className="flex-1 py-2 rounded-full border border-border text-center font-medium text-sm">CMS</Link> : <Link href="/login" onClick={()=>setOpen(false)} className="flex-1 py-2 rounded-full border border-border text-center font-medium text-sm">Sign in</Link>}
+              {!session && <Link href="/login" onClick={()=>setOpen(false)} className="flex-1 py-2 rounded-full border border-border text-center font-medium text-sm">Sign in</Link>}
             </div>
           </div>
         </nav>
