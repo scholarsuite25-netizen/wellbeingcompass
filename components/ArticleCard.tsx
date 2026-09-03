@@ -6,8 +6,8 @@ import type { Article } from "@/lib/content";
 export function ArticleCard({ article, featured }: { article: Article; featured?: boolean }) {
   return (
     <article className={`group bg-white border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-elevated card-shimmer transition-all duration-300 ${featured ? "md:flex" : ""}`}>
-      <Link href={`/articles/${article.slug}`} className={`block shrink-0 overflow-hidden ${featured ? "md:w-[52%]" : ""}`}>
-        <img src={article.featuredImage} alt={article.imageAlt} width={800} height={450} className="w-full h-48 md:h-56 object-cover group-hover:scale-[1.03] transition duration-500" loading="lazy" />
+      <Link href={`/articles/${article.slug}`} className={`block shrink-0 overflow-hidden bg-slate-100 ${featured ? "md:w-[52%]" : ""}`}>
+        <img src={article.featuredImage} alt={article.imageAlt} width={800} height={450} className="w-full h-48 md:h-56 object-cover object-top group-hover:scale-[1.03] transition duration-500" style={{ objectPosition: '50% 20%' }} loading="lazy" />
       </Link>
       <div className="p-5 flex flex-col">
         <div className="flex flex-wrap gap-2 mb-2">
@@ -33,7 +33,7 @@ export function ArticleCard({ article, featured }: { article: Article; featured?
 export function ArticleCardCompact({ article }: { article: Article }) {
   return (
     <Link href={`/articles/${article.slug}`} className="flex gap-3 p-3 rounded-xl hover:bg-white border border-transparent hover:border-border hover:shadow-card transition">
-      <img src={article.featuredImage} alt="" width={96} height={96} className="h-20 w-20 rounded-xl object-cover shrink-0" />
+      <img src={article.featuredImage} alt="" width={96} height={96} className="h-20 w-20 rounded-xl object-cover object-top shrink-0 bg-slate-100" style={{ objectPosition: '50% 15%' }} />
       <div>
         <p className="text-xs text-brand-600 font-semibold">{article.category}</p>
         <p className="font-semibold leading-tight text-sm line-clamp-2">{article.title}</p>

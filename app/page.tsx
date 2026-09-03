@@ -17,7 +17,7 @@ export default function HomePage() {
       <section className="grid lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8">
           <article className="bg-white border border-border rounded-3xl overflow-hidden shadow-elevated">
-            <img src={hero.featuredImage} alt={hero.imageAlt} width={1200} height={600} className="w-full h-[300px] md:h-[380px] object-cover" />
+            <img src={hero.featuredImage} alt={hero.imageAlt} width={1200} height={600} className="w-full h-[300px] md:h-[380px] object-cover object-top bg-slate-100" style={{ objectPosition: '50% 18%' }} />
             <div className="p-6 md:p-8">
               <div className="flex flex-wrap gap-2 mb-3">
                 <Badge>Featured — Mental Health</Badge>
