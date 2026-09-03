@@ -1,0 +1,22 @@
+{
+  "name": "Wellbeing Compass",
+  "short_name": "Wellbeing",
+  "description": "Your trusted guide to mental and general health — evidence-informed, compassionate, accessible. Understand. Prevent. Heal. Thrive.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0D2A4A",
+  "theme_color": "#0D2A4A",
+  "lang": "en",
+  "categories": ["health", "education", "medical"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Search articles", "url": "/search", "description": "Find health articles" },
+    { "name": "Help & Crises", "url": "/help", "description": "Get help and hotline numbers" }
+  ]
+}

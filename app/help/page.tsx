@@ -1,10 +1,21 @@
+import { CallActions } from "@/components/CallActions";
+import { CONTACT_PHONE_DISPLAY } from "@/lib/contact";
+
 export const metadata = { title: "Help & Emergency Information" };
 export default function Page(){
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <h1 className="font-display font-extrabold text-3xl text-brand-700">Help & Emergency Information</h1>
+
+      <div className="mt-5 rounded-2xl bg-[#0D2A4A] text-white p-6">
+        <p className="font-bold text-lg">Wellbeing Companion Line</p>
+        <p className="text-white/85 text-sm mt-1">Reach a caring ear — call or WhatsApp us at <span className="font-bold">{CONTACT_PHONE_DISPLAY}</span>.</p>
+        <div className="mt-4"><CallActions /></div>
+        <p className="text-xs text-white/60 mt-3">Trained assessment and support chat, not a clinical emergency service.</p>
+      </div>
+
       <div className="mt-4 rounded-2xl bg-red-50 border border-red-200 p-5">
-        <p className="font-semibold text-red-800">If you need urgent help</p>
+        <p className="font-semibold text-red-800">If you are in immediate danger or crisis</p>
         <ul className="list-disc pl-5 text-sm mt-2 space-y-1">
           <li>Contact your local emergency number (for example, 112, 911, 999 or 767 where available) or go to your nearest emergency department.</li>
           <li>Reach a trusted person — family, friend, teacher, colleague or community leader — and stay with someone you trust.</li>
@@ -12,6 +23,7 @@ export default function Page(){
         </ul>
         <p className="text-xs text-muted mt-2">Wellbeing Compass does not provide emergency services, diagnosis, or real-time crisis support.</p>
       </div>
+
       <section className="mt-6 prose-wellmind text-sm">
         <h2>Support options</h2>
         <ul>

@@ -1,34 +1,39 @@
+"use client";
+import { useEffect } from "react";
 import { env } from "@/lib/env";
 
-// Privacy-conscious analytics — only injected when env enables
-// Plausible (recommended) or GA, else nothing. Respects DNT via provider config.
+// Cookie-light analytics + visit/read tracking.
+// GA (when NEXT_PUBLIC_GA_ID is set) via gtag; Plausible via env;
+// plus a lightweight self-hosted counter sent to /api/track for the stats pages.
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
 
 export function Analytics() {
-  const provider = env.ANALYTICS_PROVIDER;
-  const domain = env.ANALYTICS_DOMAIN || env.NEXT_PUBLIC_ANALYTICS_DOMAIN;
+  const gaId = env.NEXT_PUBLIC_GA_ID;
 
-  if (provider === "plausible" && domain) {
-    // Plausible cloud — lightweight, no cookies
-    return (
+  useEffect(() => {
+    // Self-hosted visit tracking
+    try {
+      const payload = { path: window.location.pathname, ref: document.referrer.slice(0, 200) };
+      navigator.sendBeacon("/api/track", JSON.stringify(payload));
+    } catch { /* non-fatal */ }
+  }, []);
+
+  if (!gaId) return null;
+
+  return (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
       <script
-        defer
-        data-domain={domain}
-        src="https://plausible.io/js/script.js"
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${gaId}',{anonymize_ip:true});`,
+        }}
       />
-    );
-  }
-  if (provider === "ga" && domain) {
-    // domain holds GA measurement ID e.g. G-XXXX
-    return (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${domain}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','${domain}',{anonymize_ip:true});`,
-          }}
-        />
-      </>
-    );
-  }
-  return null;
+    </>
+  );
 }

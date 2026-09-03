@@ -92,6 +92,26 @@ export default function HomePage() {
         <SelfCheckTool />
       </section>
 
+      {/* Quick Relief — Stress, Anxiety & Depression */}
+      <section className="mt-10 grid lg:grid-cols-3 gap-4">
+        {[
+          { icon: "😮‍💨", title: "Feeling stressed?", body: "Try a 1-minute reset: breathe in 4, hold 2, out 6, repeat 4 times. Then use the stress self-check above." },
+          { icon: "🌊", title: "Anxiety rising?", body: "Ground yourself: name 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste. Then step outside briefly." },
+          { icon: "🫂", title: "Feeling low?", body: "Tell one trusted person how you feel today. Connection and routine protect mood. Reach out — you're not alone." },
+        ].map(c => (
+          <div key={c.title} className="bg-white border border-brand-100 rounded-2xl p-5">
+            <span className="text-3xl">{c.icon}</span>
+            <h3 className="font-display font-bold text-lg text-brand-700 mt-2">{c.title}</h3>
+            <p className="text-sm text-muted mt-1 leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </section>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <a href="tel:+2348146620168" className="inline-flex items-center gap-2 bg-brand-700 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#0A223C] transition">📞 Call support — +234 814 662 0168</a>
+        <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#1fbd5a] transition">💬 WhatsApp a caring ear</a>
+        <Link href="/help" className="inline-flex items-center gap-2 bg-surface border border-border text-ink px-5 py-2.5 rounded-full font-semibold hover:bg-brand-50 transition">Help & Crises resources</Link>
+      </div>
+
       {/* Practical tips */}
       <section className="mt-10 bg-white border border-border rounded-3xl p-6 md:p-8">
         <h2 className="font-display font-bold text-xl text-brand-700">Practical tips you can try today</h2>

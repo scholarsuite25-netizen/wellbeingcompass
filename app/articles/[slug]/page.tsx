@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/Badge";
 import { DisclaimerBox, HelpBox, ReviewBadge, ContentWarning } from "@/components/SafetyComponents";
 import { ArticleCard } from "@/components/ArticleCard";
 import { ReadingBar } from "@/components/ReadingBar";
+import { ShareButtons } from "@/components/ShareButtons";
+import { AudioRead } from "@/components/AudioRead";
+import { HealthTipOfTheDay } from "@/components/HealthTipOfTheDay";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 
@@ -42,6 +45,7 @@ export default function Page({ params }: { params: { slug: string } }){
     image: article.featuredImage,
   };
   const toc = article.content.filter(c=>c.type==="heading").map(c=>c.text);
+  const articleText = article.content.map(c=>c.text).join(". ");
 
   return (
     <>
@@ -68,9 +72,13 @@ export default function Page({ params }: { params: { slug: string } }){
               </div>
             </div>
             {article.reviewer && article.lastReviewed && <div className="mt-3"><ReviewBadge reviewer={article.reviewer.name} date={article.lastReviewed} /></div>}
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <AudioRead articleText={articleText} title={article.title} />
+              <ShareButtons title={article.title} slug={article.slug} />
+            </div>
             {article.contentWarning && <div className="mt-4"><ContentWarning><p><strong>Content note:</strong> {article.contentWarning}</p></ContentWarning></div>}
             <figure className="mt-6">
-              <img src={article.featuredImage} alt={article.imageAlt} width={1200} height={600} className="w-full rounded-2xl object-cover max-h-[420px]" />
+              <img src={article.featuredImage} alt={article.imageAlt} width={1200} height={600} className="w-full rounded-2xl object-cover object-top max-h-[420px]" style={{ objectPosition: '50% 20%' }} />
               {article.imageCaption && <figcaption className="text-xs text-muted mt-2">{article.imageCaption}</figcaption>}
               <p className="text-xs text-muted mt-1">Image: illustrative. Alt text provided for accessibility.</p>
             </figure>
@@ -87,7 +95,7 @@ export default function Page({ params }: { params: { slug: string } }){
               </nav>
             )}
 
-            <div className="mt-6 prose-wellmind">
+            <div className="mt-6 prose-wellmind text-justify hyphens-auto">
               {article.content.map((block,i)=>{
                 const id = block.type==="heading" ? block.text.toLowerCase().replace(/[^a-z0-9]+/g,"-") : undefined;
                 if(block.type==="heading") return <h2 key={i} id={id}>{block.text}</h2>;
@@ -145,6 +153,7 @@ export default function Page({ params }: { params: { slug: string } }){
           </article>
 
           <aside className="lg:col-span-4 space-y-6">
+            <HealthTipOfTheDay />
             <div className="bg-white border border-border rounded-2xl p-5 sticky top-32">
               <h3 className="font-semibold">About the author</h3>
               <div className="flex gap-3 mt-3">

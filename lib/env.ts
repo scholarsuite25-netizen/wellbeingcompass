@@ -27,11 +27,21 @@ const serverSchema = z.object({
   ANALYTICS_PROVIDER: z.enum(["none", "plausible", "ga"]).default("none"),
   ANALYTICS_DOMAIN: z.string().optional(),
   NEXT_PUBLIC_ANALYTICS_DOMAIN: z.string().optional(),
+  NEXT_PUBLIC_GA_ID: z.string().optional(), // Google Analytics measurement ID e.g. G-XXXX
   // Supabase (optional if using Supabase client/storage)
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
   // Rate limiting
   RATE_LIMIT_WINDOW_MS: z.coerce.number().default(60000),
   RATE_LIMIT_MAX: z.coerce.number().default(60),
+  // WhatsApp Business / Meta Cloud API (for member notifications + autopost)
+  WHATSAPP_TOKEN: z.string().optional(),
+  WHATSAPP_PHONE_ID: z.string().optional(),
+  // Social autoposting
+  SOCIAL_AUTOPOST: z.enum(["none", "facebook", "x", "instagram", "linkedin", "all"]).default("none"),
+  FACEBOOK_PAGE_TOKEN: z.string().optional(),
+  TWITTER_BEARER_TOKEN: z.string().optional(),
+  INSTAGRAM_TOKEN: z.string().optional(),
+  LINKEDIN_ACCESS_TOKEN: z.string().optional(),
   // Environment
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });

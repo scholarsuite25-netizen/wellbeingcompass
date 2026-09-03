@@ -25,6 +25,7 @@ export function SiteFooter() {
             <li><Link href="/relationships" className="hover:text-white">Healthy Relationships</Link></li>
             <li><Link href="/training" className="hover:text-white">Compass Academy & Training</Link></li>
             <li><Link href="/campaigns" className="hover:text-white">Public Health Campaigns</Link></li>
+            <li><Link href="/archives" className="hover:text-white">Article Archives</Link></li>
           </ul>
         </div>
         <div>
@@ -36,6 +37,8 @@ export function SiteFooter() {
             <li><Link href="/help" className="hover:text-white">Help & Crisis Hotlines</Link></li>
             <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
             <li><Link href="/terms" className="hover:text-white">Terms of Use</Link></li>
+            <li><Link href="/promoter" className="hover:text-white">About the Founder</Link></li>
+            <li><Link href="/stats" className="hover:text-white">Site Analytics</Link></li>
           </ul>
         </div>
         <div>
