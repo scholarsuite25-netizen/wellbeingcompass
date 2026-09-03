@@ -10,4 +10,9 @@ export function waLink(message?: string): string {
   return `https://wa.me/2348146620168${text ? `?text=${text}` : ""}`;
 }
 
+// Share-to-anyone prefill (opens WhatsApp to pick a recipient/group) — zero cost, no API
+export function waShareLink(message: string): string {
+  return `https://wa.me/?text=${encodeURIComponent(message)}`;
+}
+
 export const SITE_NAME = "Wellbeing Compass";
