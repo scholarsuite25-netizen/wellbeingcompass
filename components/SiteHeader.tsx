@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Search, Menu, X, Compass, ShieldAlert, LogOut, Phone, MessageCircle } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import { ThemeToggle } from "./ThemeToggle";
+import { BookmarkDrawer } from "./BookmarkDrawer";
 
 const primaryNav = [
   { href: "/mental-health", label: "Mind" },
@@ -68,9 +70,11 @@ export function SiteHeader() {
               <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hidden md:inline-flex items-center gap-1.5 bg-[#25D366] text-white px-3 py-2 rounded-full text-[13px] font-bold hover:bg-[#1fbd5a] transition">
                 <MessageCircle className="h-3.5 w-3.5"/> WhatsApp
               </a>
-              <Link href="/search" aria-label="Search" className="h-9 w-9 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:text-[#0A223C] hover:bg-white/95 transition">
-                <Search className="h-4 w-4" />
+              <Link href="/search" aria-label="Search" className="h-8 w-8 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:text-[#0A223C] hover:bg-white/95 transition">
+                <Search className="h-3.5 w-3.5" />
               </Link>
+              <BookmarkDrawer />
+              <ThemeToggle />
               <Link href="/newsletter" className="hidden lg:inline-flex bg-accent-400 text-[#0D2A4A] font-extrabold px-4 py-2 rounded-full text-sm hover:bg-accent-500 transition">Subscribe</Link>
               {session ? (
                 <button onClick={()=>signOut()} className="hidden lg:inline-flex items-center gap-1 text-[13px] font-medium text-white/85 hover:text-white transition">

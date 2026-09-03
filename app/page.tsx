@@ -3,6 +3,7 @@ import { articles, campaigns, categories, courses } from "@/lib/content";
 import { ArticleCard, ArticleCardCompact } from "@/components/ArticleCard";
 import { Newsletter } from "@/components/Newsletter";
 import { SelfCheckTool } from "@/components/SelfCheckTool";
+import { CommunityPoll } from "@/components/CommunityPoll";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Award, BookOpen, HeartPulse, Leaf, ShieldCheck, Users } from "lucide-react";
 
@@ -111,6 +112,11 @@ export default function HomePage() {
         <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-2.5 rounded-full font-semibold hover:bg-[#1fbd5a] transition">💬 WhatsApp a caring ear</a>
         <Link href="/help" className="inline-flex items-center gap-2 bg-surface border border-border text-ink px-5 py-2.5 rounded-full font-semibold hover:bg-brand-50 transition">Help & Crises resources</Link>
       </div>
+
+      {/* Community Health Pulse */}
+      <section className="mt-10">
+        <CommunityPoll />
+      </section>
 
       {/* Practical tips */}
       <section className="mt-10 bg-white border border-border rounded-3xl p-6 md:p-8">

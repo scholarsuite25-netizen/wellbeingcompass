@@ -7,6 +7,7 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { ReadingBar } from "@/components/ReadingBar";
 import { ShareButtons } from "@/components/ShareButtons";
 import { AudioRead } from "@/components/AudioRead";
+import { ArticleActions } from "@/components/ArticleActions";
 import { HealthTipOfTheDay } from "@/components/HealthTipOfTheDay";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -57,6 +58,10 @@ export default function Page({ params }: { params: { slug: string } }){
         </nav>
         <div className="grid lg:grid-cols-12 gap-8 mt-4">
           <article className="lg:col-span-8">
+            <div className="hidden print-only mb-6 pb-4 border-b border-black">
+              <p className="text-xl font-bold">Wellbeing Compass — Patient Education Handout</p>
+              <p className="text-xs text-gray-600">Educational resource • Not a substitute for individual medical diagnosis</p>
+            </div>
             <div className="flex flex-wrap gap-2 mb-3">
               <Badge>{article.category}</Badge>
               <Badge variant="success">{article.evidenceLevel}</Badge>
@@ -72,9 +77,17 @@ export default function Page({ params }: { params: { slug: string } }){
               </div>
             </div>
             {article.reviewer && article.lastReviewed && <div className="mt-3"><ReviewBadge reviewer={article.reviewer.name} date={article.lastReviewed} /></div>}
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <AudioRead articleText={articleText} title={article.title} />
-              <ShareButtons title={article.title} slug={article.slug} />
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <AudioRead articleText={articleText} title={article.title} />
+                <ShareButtons title={article.title} slug={article.slug} />
+              </div>
+              <ArticleActions
+                slug={article.slug}
+                title={article.title}
+                category={article.category}
+                readingTime={article.readingTime}
+              />
             </div>
             {article.contentWarning && <div className="mt-4"><ContentWarning><p><strong>Content note:</strong> {article.contentWarning}</p></ContentWarning></div>}
             <figure className="mt-6">
