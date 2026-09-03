@@ -16,3 +16,4 @@ uploads/
 
 .vercel
 .env*
+*.tsbuildinfo
