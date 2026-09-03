@@ -12,7 +12,7 @@ const serverSchema = z.object({
   VERCEL_ENV: z.enum(["production", "preview", "development"]).optional(),
   VERCEL: z.string().optional(), // "1" on Vercel
   // Media storage
-  MEDIA_STORAGE_PROVIDER: z.enum(["local", "s3", "r2"]).default("local"),
+  MEDIA_STORAGE_PROVIDER: z.enum(["local", "s3", "r2", "supabase"]).default("local"),
   MEDIA_STORAGE_BUCKET: z.string().optional(),
   AWS_ACCESS_KEY_ID: z.string().optional(),
   AWS_SECRET_ACCESS_KEY: z.string().optional(),

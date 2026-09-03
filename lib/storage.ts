@@ -22,6 +22,10 @@ export function isS3Configured() {
 export function publicMediaUrl(key: string) {
   const c = getStorageConfig();
   if (c.provider === "local") return `/uploads/${key}`;
+  if (c.provider === "supabase") {
+    const baseUrl = env.NEXT_PUBLIC_SUPABASE_URL || "https://your-project.supabase.co";
+    return `${baseUrl}/storage/v1/object/public/${c.bucket}/${key}`;
+  }
   // S3/R2 public URL pattern — adjust for your CDN if using CloudFront/R2 public
   return `https://${c.bucket}.s3.${c.region}.amazonaws.com/${key}`;
 }
