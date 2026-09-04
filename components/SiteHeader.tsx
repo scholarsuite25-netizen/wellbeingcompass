@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Search, Menu, X, Compass, ShieldAlert, LogOut, Phone, MessageCircle } from "lucide-react";
+import { Search, Menu, X, Compass, ShieldAlert, LogOut } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 import { ThemeToggle } from "./ThemeToggle";
-import { BookmarkDrawer } from "./BookmarkDrawer";
 
 const primaryNav = [
   { href: "/mental-health", label: "Mind" },
@@ -54,16 +53,6 @@ export function SiteHeader() {
               </span>
             </Link>
 
-            {/* Call & WhatsApp buttons — left side, next to logo */}
-            <div className="hidden md:flex items-center gap-1.5 shrink-0">
-              <a href="tel:+2348146620168" aria-label="Call" className="inline-flex items-center gap-1.5 bg-white text-[#0D2A4A] px-3 py-2 rounded-full text-[13px] font-bold hover:bg-white/95 transition">
-                <Phone className="h-3.5 w-3.5"/> Call
-              </a>
-              <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="inline-flex items-center gap-1.5 bg-[#25D366] text-white px-3 py-2 rounded-full text-[13px] font-bold hover:bg-[#1fbd5a] transition">
-                <MessageCircle className="h-3.5 w-3.5"/> WhatsApp
-              </a>
-            </div>
-
             {/* Center nav - one word each, white on navy (15.8:1), no wrap */}
             <nav aria-label="Primary" className="hidden lg:flex items-center gap-0.5 ml-4 flex-1 justify-center">
               {primaryNav.map(i=>(
@@ -77,9 +66,7 @@ export function SiteHeader() {
               <Link href="/search" aria-label="Search" className="h-8 w-8 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:text-[#0A223C] hover:bg-white/95 transition">
                 <Search className="h-3.5 w-3.5" />
               </Link>
-              <BookmarkDrawer />
               <ThemeToggle />
-              <Link href="/newsletter" className="hidden lg:inline-flex bg-accent-400 text-[#0D2A4A] font-extrabold px-4 py-2 rounded-full text-sm hover:bg-accent-500 transition">Subscribe</Link>
               {session ? (
                 <button onClick={()=>signOut()} className="hidden lg:inline-flex items-center gap-1 text-[13px] font-medium text-white/85 hover:text-white transition">
                   <LogOut className="h-3.5 w-3.5"/>Out
@@ -109,10 +96,7 @@ export function SiteHeader() {
               ))}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2">
-              <a href="tel:+2348146620168" className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-accent-400 text-[#0D2A4A] font-bold text-sm">📞 Call</a>
-              <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 py-2.5 rounded-full bg-[#25D366] text-white font-bold text-sm">💬 WhatsApp</a>
               <Link href="/help" onClick={()=>setOpen(false)} className="flex items-center justify-center py-2.5 rounded-full bg-white/15 text-white font-semibold text-sm">Help & Crises</Link>
-              <Link href="/newsletter" onClick={()=>setOpen(false)} className="flex items-center justify-center py-2.5 rounded-full bg-white text-[#0D2A4A] font-semibold text-sm">Subscribe</Link>
             </div>
             {!session && (
               <div className="mt-2">
