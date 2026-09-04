@@ -24,7 +24,21 @@ export const EVIDENCE_LEVELS = ["Evidence_informed", "Expert_reviewed", "General
  */
 export function canAccessCMS(role?: string): boolean {
   if (!role) return false;
-  return role !== "READER";
+  return [
+    "SUPER_ADMIN",
+    "ADMIN",
+    "EDITOR_IN_CHIEF",
+    "MANAGING_EDITOR",
+    "HEALTH_EDITOR",
+    "MEDICAL_REVIEWER",
+    "AUTHOR",
+    "CONTRIBUTOR",
+    "COPY_EDITOR",
+    "MODERATOR",
+    "MEDIA_MANAGER",
+    "SEO_MANAGER",
+    "TRAINER",
+  ].includes(role);
 }
 
 /**
