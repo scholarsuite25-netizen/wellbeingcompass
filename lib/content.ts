@@ -1,7 +1,29 @@
+import { FOUNDER } from "./founders";
 export type Category = "Mental Health" | "General Health" | "Prevention" | "Relationships" | "Family & Parenting" | "Social Wellbeing" | "Environment & Health" | "Workplace Wellbeing" | "Training" | "Public Health";
 export type EvidenceLevel = "Evidence-informed" | "Expert reviewed" | "General education" | "Research summary";
 export type ReviewStatus = "draft" | "pending-medical-review" | "medically-reviewed" | "published";
-export type Author = { slug: string; name: string; role: string; bio: string; avatar: string };
+export type Author = {
+  slug: string;
+  name: string;
+  role: string;
+  bio: string;
+  avatar: string;
+  isFounder?: boolean;
+  credentials?: string;          // e.g. "RN, RM, PhD"
+  professionalTitle?: string;    // e.g. "Director of Nursing Services"
+  currentPosition?: string;      // e.g. "Babcock University Teaching Hospital"
+  shortBio?: string;             // homepage intro
+  fullBio?: string;              // profile page narrative
+  profilePhoto?: string;         // official founder portrait
+  specializations?: string[];    // one-line professional identities
+  expertise?: { title: string; description?: string }[];
+  education?: { title: string; place?: string; level?: string }[];
+  fellowships?: string[];
+  certifications?: string[];
+  awards?: string[];
+  researchInterests?: string[];
+  socialLinks?: { label: string; url: string }[];
+};
 export type Reviewer = { slug: string; name: string; credentials: string; specialty: string; avatar: string };
 export type Article = {
   slug: string;
@@ -29,6 +51,7 @@ export type Article = {
 };
 
 export const authors: Author[] = [
+  FOUNDER,
   { slug: "amina-okoro", name: "Amina Okoro", role: "Public Health Specialist, MPH", bio: "Nigerian public-health writer and researcher focused on prevention, health equity, and community wellness.", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" },
   { slug: "daniel-owusu", name: "Daniel Owusu", role: "Senior Medical Editor", bio: "Health journalist and editor with 12 years in African health communications and plain-language medical education.", avatar: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&h=400&fit=crop" },
   { slug: "sarah-lee", name: "Sarah Nwachukwu", role: "Mental Health & Wellbeing Educator", bio: "Lagos-based counselling educator writing on emotional resilience, relationships, and youth coping strategies.", avatar: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=400&h=400&fit=crop" },
@@ -61,7 +84,7 @@ export const articles: Article[] = [
     excerpt: "Anxiety is a normal human response. This guide explains common signs, coping ideas, and when to consider help — without diagnosing you.",
     category: "Mental Health",
     topics: ["Anxiety & Stress", "Coping Skills", "Awareness"],
-    author: authors[2],
+    author: FOUNDER,
     reviewer: reviewers[2],
     featuredImage: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&h=700&fit=crop",
     imageAlt: "Young Nigerian woman sitting calmly in a bright room reflecting",
@@ -100,7 +123,7 @@ export const articles: Article[] = [
     excerpt: "Consistent sleep supports mood, learning and physical health. Explore practical, low-cost habits that improve sleep without products or promises.",
     category: "General Health",
     topics: ["Sleep", "Prevention", "Healthy Habits"],
-    author: authors[0],
+    author: FOUNDER,
     reviewer: reviewers[0],
     featuredImage: "https://images.unsplash.com/photo-1516216628859-9bccecab13ca?w=1200&h=700&fit=crop",
     imageAlt: "Serene, modern bedroom in natural daylight",
@@ -130,7 +153,7 @@ export const articles: Article[] = [
     excerpt: "Strong relationships depend on how we listen, speak and repair. Learn compassionate communication patterns you can practice today.",
     category: "Relationships",
     topics: ["Communication", "Trust", "Family"],
-    author: authors[2],
+    author: FOUNDER,
     reviewer: reviewers[2],
     featuredImage: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian couple engaging in thoughtful conversation in a warm cafe",
@@ -156,7 +179,7 @@ export const articles: Article[] = [
     excerpt: "Prevention is not just tests. It is daily choices, timely visits, and knowing your family history.",
     category: "Prevention",
     topics: ["Screening", "Primary Care", "Healthy Choices"],
-    author: authors[1],
+    author: FOUNDER,
     reviewer: reviewers[1],
     featuredImage: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian male doctor reviewing health chart in a modern medical clinic",
@@ -177,7 +200,7 @@ export const articles: Article[] = [
     excerpt: "Adolescence brings big changes. Learn to balance guidance with autonomy and recognize signs that extra support helps.",
     category: "Family & Parenting",
     topics: ["Parenting", "Adolescents", "Connection"],
-    author: authors[3],
+    author: FOUNDER,
     reviewer: reviewers[2],
     featuredImage: "https://images.unsplash.com/photo-1521106047354-5a5b85e819ee?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian parent and teenager conversing comfortably outdoors in a garden",
@@ -198,7 +221,7 @@ export const articles: Article[] = [
     excerpt: "Exhaustion, detachment and reduced effectiveness often build gradually. Learn to spot signs early and respond with boundaries.",
     category: "Workplace Wellbeing",
     topics: ["Burnout", "Boundaries", "Leadership"],
-    author: authors[1],
+    author: FOUNDER,
     reviewer: reviewers[1],
     featuredImage: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian professional working at a desk in a bright, modern corporate office",
@@ -219,7 +242,7 @@ export const articles: Article[] = [
     excerpt: "From cooking smoke to traffic pollution, air quality shapes health. Learn practical ways to breathe easier at home and work.",
     category: "Environment & Health",
     topics: ["Air Quality", "Children", "Prevention"],
-    author: authors[0],
+    author: FOUNDER,
     featuredImage: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian family outdoors breathing fresh air in their community",
     content: [{ type: "paragraph", text: "Ventilation, cooking practices, tobacco smoke and traffic exposure all affect air you breathe daily." }],
@@ -239,7 +262,7 @@ export const articles: Article[] = [
     excerpt: "Loneliness can affect sleep, mood and immunity. Explore community-oriented ways to feel more connected.",
     category: "Social Wellbeing",
     topics: ["Belonging", "Community", "Mental Health"],
-    author: authors[2],
+    author: FOUNDER,
     featuredImage: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&h=700&fit=crop",
     imageAlt: "Joyful group of young Nigerian friends laughing and socializing together outdoors",
     content: [{ type: "paragraph", text: "Connection is built through repeated small interactions: greetings, invitations, shared activities and offers of help." }],

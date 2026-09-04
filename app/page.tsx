@@ -6,6 +6,7 @@ import { SelfCheckTool } from "@/components/SelfCheckTool";
 import { CommunityPoll } from "@/components/CommunityPoll";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, Award, BookOpen, HeartPulse, Leaf, ShieldCheck, Users } from "lucide-react";
+import { FOUNDER } from "@/lib/founders";
 
 export default function HomePage() {
   const hero = articles[0];
@@ -48,6 +49,39 @@ export default function HomePage() {
               {latest.map(a=> <ArticleCardCompact key={a.slug} article={a} />)}
             </div>
             <Link href="/search" className="text-sm text-brand-600 font-semibold mt-3 inline-flex">View all articles <ArrowRight className="h-4 w-4 ml-1"/></Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet the Health Professional */}
+      <section className="mt-10 bg-white border border-border rounded-3xl overflow-hidden">
+        <div className="grid md:grid-cols-12 items-center">
+          <div className="md:col-span-4 h-full">
+            <img
+              src={FOUNDER.profilePhoto}
+              alt={`Official portrait of ${FOUNDER.name}, ${FOUNDER.credentials}`}
+              width={880}
+              height={1000}
+              className="w-full h-full object-cover object-top aspect-[4/4] md:aspect-auto md:h-full"
+            />
+          </div>
+          <div className="md:col-span-8 p-6 md:p-10">
+            <p className="text-accent-600 dark:text-accent-300 font-extrabold text-xs tracking-widest uppercase">Meet the Health Professional</p>
+            <h2 className="font-display font-extrabold text-2xl md:text-3xl text-brand-700 mt-2">
+              {FOUNDER.name}, {FOUNDER.credentials}
+            </h2>
+            <p className="text-brand-600 font-semibold mt-1">
+              Nurse Leader • Health Educator • Researcher • Mental Health &amp; Public Health Advocate
+            </p>
+            <p className="text-muted mt-4 leading-relaxed max-w-2xl">{FOUNDER.shortBio}</p>
+            <div className="flex flex-wrap gap-3 mt-6">
+              <Link href="/about-the-founder" className="inline-flex items-center gap-2 bg-brand-700 hover:bg-[#0A223C] text-white font-semibold px-5 py-2.5 rounded-full transition">
+                Meet the Founder <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link href="/authors/christianah-oyinloye" className="inline-flex items-center gap-2 bg-white border border-border text-brand-700 hover:bg-brand-50 font-semibold px-5 py-2.5 rounded-full transition">
+                Read Her Articles
+              </Link>
+            </div>
           </div>
         </div>
       </section>

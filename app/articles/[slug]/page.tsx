@@ -8,6 +8,7 @@ import { ReadingBar } from "@/components/ReadingBar";
 import { ShareButtons } from "@/components/ShareButtons";
 import { AudioRead } from "@/components/AudioRead";
 import { ArticleActions } from "@/components/ArticleActions";
+import { AboutTheAuthor } from "@/components/FounderProfile";
 import { HealthTipOfTheDay } from "@/components/HealthTipOfTheDay";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -72,7 +73,7 @@ export default function Page({ params }: { params: { slug: string } }){
             <div className="flex items-center gap-3 mt-4 text-sm">
               <img src={article.author.avatar} alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover"/>
               <div>
-                <p className="font-semibold"><Link href={`/authors/${article.author.slug}`} className="hover:text-brand-600">{article.author.name}</Link> <span className="text-muted font-normal">• {article.author.role}</span></p>
+                <p className="font-semibold"><Link href={article.author.isFounder ? "/about-the-founder" : `/authors/${article.author.slug}`} className="hover:text-brand-600">{article.author.name}{article.author.credentials ? <span className="text-muted font-normal">, {article.author.credentials}</span> : ""}</Link> <span className="text-muted font-normal">• {article.author.isFounder ? "Founder & Health Professional" : article.author.role}</span></p>
                 <p className="text-muted text-xs">{formatDate(article.publishedAt)} • Updated {formatDate(article.updatedAt)} • {article.readingTime} min read</p>
               </div>
             </div>
@@ -167,18 +168,10 @@ export default function Page({ params }: { params: { slug: string } }){
 
           <aside className="lg:col-span-4 space-y-6">
             <HealthTipOfTheDay />
-            <div className="bg-white border border-border rounded-2xl p-5 sticky top-32">
-              <h3 className="font-semibold">About the author</h3>
-              <div className="flex gap-3 mt-3">
-                <img src={article.author.avatar} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover"/>
-                <div>
-                  <p className="font-semibold text-sm">{article.author.name}</p>
-                  <p className="text-xs text-muted">{article.author.role}</p>
-                  <p className="text-xs text-muted mt-1">{article.author.bio}</p>
-                </div>
-              </div>
+            <div className="bg-white border border-border rounded-2xl p-5">
+              <AboutTheAuthor author={article.author} compact />
               {article.reviewer && (
-                <div className="mt-4 border-t pt-4">
+                <div className="mt-4 border-t border-border pt-4">
                   <p className="text-xs font-semibold tracking-widest uppercase text-muted">Medically reviewed by</p>
                   <Link href={`/reviewers/${article.reviewer.slug}`} className="font-semibold text-sm text-brand-700 hover:underline">{article.reviewer.name}</Link>
                   <p className="text-xs text-muted">{article.reviewer.credentials} • {article.reviewer.specialty}</p>

@@ -96,6 +96,7 @@ export function SiteHeader() {
               ))}
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2">
+              <Link href="/about-the-founder" onClick={()=>setOpen(false)} className="flex items-center justify-center py-2.5 rounded-full bg-white text-[#0D2A4A] font-semibold text-sm hover:bg-accent-400 transition dark:bg-white/10 dark:text-white dark:hover:bg-accent-400 dark:hover:text-[#0D2A4A]">Meet the Founder</Link>
               <Link href="/help" onClick={()=>setOpen(false)} className="flex items-center justify-center py-2.5 rounded-full bg-white/15 text-white font-semibold text-sm">Help & Crises</Link>
             </div>
             {!session && (

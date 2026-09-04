@@ -20,7 +20,17 @@ export function ArticleCard({ article, featured }: { article: Article; featured?
         </Link>
         {article.deck && <p className="text-sm text-muted mt-2 line-clamp-2">{article.deck}</p>}
         <div className="flex items-center gap-2 mt-3 text-xs text-muted">
-          <span>{article.author.name}</span><span>•</span><span>{formatDate(article.publishedAt)}</span><span>•</span><span>{article.readingTime} min</span>
+          {article.author.avatar && (
+            <img src={article.author.avatar} alt="" width={24} height={24} className="h-6 w-6 rounded-full object-cover object-top shrink-0" />
+          )}
+          {article.author.isFounder ? (
+            <Link href="/about-the-founder" className="font-semibold text-brand-700 hover:text-brand-500 truncate">
+              {article.author.name}{article.author.credentials ? `, ${article.author.credentials}` : ""}
+            </Link>
+          ) : (
+            <span className="truncate">{article.author.name}</span>
+          )}
+          <span>•</span><span>{formatDate(article.publishedAt)}</span><span>•</span><span>{article.readingTime} min</span>
         </div>
         <div className="flex flex-wrap gap-1.5 mt-3">
           {article.topics.slice(0,3).map(t=> <span key={t} className="text-xs bg-surface border border-border px-2 py-0.5 rounded-full">{t}</span>)}
@@ -37,7 +47,7 @@ export function ArticleCardCompact({ article }: { article: Article }) {
       <div>
         <p className="text-xs text-brand-600 font-semibold">{article.category}</p>
         <p className="font-semibold leading-tight text-sm line-clamp-2">{article.title}</p>
-        <p className="text-xs text-muted mt-1">{article.readingTime} min • {formatDate(article.publishedAt)}</p>
+        <p className="text-xs text-muted mt-1 flex items-center gap-1"><span className="truncate">{article.readingTime} min • {formatDate(article.publishedAt)}</span></p>
       </div>
     </Link>
   )

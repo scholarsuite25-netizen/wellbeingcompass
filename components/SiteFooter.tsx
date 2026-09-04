@@ -37,7 +37,7 @@ export function SiteFooter() {
             <li><Link href="/help" className="hover:text-white">Help & Crisis Hotlines</Link></li>
             <li><Link href="/privacy" className="hover:text-white">Privacy Policy</Link></li>
             <li><Link href="/terms" className="hover:text-white">Terms of Use</Link></li>
-            <li><Link href="/promoter" className="hover:text-white">About the Founder</Link></li>
+            <li><Link href="/about-the-founder" className="hover:text-white">Meet the Founder</Link></li>
             <li><Link href="/broadcast" className="hover:text-white">Promoter WhatsApp Broadcast</Link></li>
             <li><Link href="/stats" className="hover:text-white">Site Analytics</Link></li>
           </ul>

@@ -90,14 +90,29 @@ model Topic {
 }
 
 model Author {
-  id        String    @id @default(cuid())
-  slug      String    @unique
-  name      String
-  role      String
-  bio       String
-  avatar    String
-  articles  Article[]
-  createdAt DateTime  @default(now())
+  id                 String    @id @default(cuid())
+  slug               String    @unique
+  name               String
+  role               String
+  bio                String
+  avatar             String
+  isFounder          Boolean   @default(false)
+  credentials        String?
+  professionalTitle  String?
+  currentPosition    String?
+  shortBio           String?
+  fullBio            String?
+  profilePhoto       String?
+  specializations    String?
+  expertise          String?
+  education          String?
+  fellowships        String?
+  certifications     String?
+  awards             String?
+  researchInterests  String?
+  socialLinks        String?
+  articles           Article[]
+  createdAt          DateTime  @default(now())
 }
 
 model Reviewer {
