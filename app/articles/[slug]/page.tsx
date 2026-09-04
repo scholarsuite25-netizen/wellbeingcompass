@@ -92,7 +92,7 @@ export default function Page({ params }: { params: { slug: string } }){
             </div>
             {article.contentWarning && <div className="mt-4"><ContentWarning><p><strong>Content note:</strong> {article.contentWarning}</p></ContentWarning></div>}
             <figure className="mt-6">
-              <img src={article.featuredImage} alt={article.imageAlt} width={1200} height={600} className="w-full rounded-2xl object-cover object-top max-h-[420px]" style={{ objectPosition: '50% 20%' }} />
+              <img src={article.featuredImage} alt={article.imageAlt} width={1200} height={675} className="w-full aspect-[16/9] md:aspect-[21/9] max-h-[460px] rounded-2xl object-cover object-top" style={{ objectPosition: '50% 15%' }} />
               {article.imageCaption && <figcaption className="text-xs text-muted mt-2">{article.imageCaption}</figcaption>}
               <p className="text-xs text-muted mt-1">Image: illustrative. Alt text provided for accessibility.</p>
             </figure>

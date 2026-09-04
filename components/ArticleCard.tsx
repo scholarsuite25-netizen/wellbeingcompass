@@ -7,7 +7,7 @@ export function ArticleCard({ article, featured }: { article: Article; featured?
   return (
     <article className={`group bg-white border border-border rounded-2xl overflow-hidden shadow-card hover:shadow-elevated card-shimmer transition-all duration-300 ${featured ? "md:flex" : ""}`}>
       <Link href={`/articles/${article.slug}`} className={`block shrink-0 overflow-hidden bg-slate-100 ${featured ? "md:w-[52%]" : ""}`}>
-        <img src={article.featuredImage} alt={article.imageAlt} width={800} height={450} className="w-full h-48 md:h-56 object-cover object-top group-hover:scale-[1.03] transition duration-500" style={{ objectPosition: '50% 20%' }} loading="lazy" />
+        <img src={article.featuredImage} alt={article.imageAlt} width={800} height={450} className="w-full aspect-[16/9] object-cover object-top group-hover:scale-[1.03] transition duration-500" style={{ objectPosition: '50% 15%' }} loading="lazy" />
       </Link>
       <div className="p-5 flex flex-col">
         <div className="flex flex-wrap gap-2 mb-2">
