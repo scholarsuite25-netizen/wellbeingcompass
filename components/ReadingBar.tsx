@@ -90,7 +90,7 @@ export function ReadingBar({ title, readingTime, onFontSizeChange }: ReadingBarP
           <button
             onClick={() => setSaved(!saved)}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-full border border-border hover:bg-brand-50 text-xs font-medium transition ${
-              saved ? "bg-accent-50 text-accent-700 border-accent-300" : "text-ink"
+              saved ? "bg-accent-50 text-accent-600 border-accent-300" : "text-ink"
             }`}
             title="Bookmark article"
           >
