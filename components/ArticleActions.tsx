@@ -62,11 +62,11 @@ export function ArticleActions({ slug, title, category, readingTime }: Props) {
         aria-label={saved ? "Saved in reading list" : "Save to reading list"}
         className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition shadow-sm border ${
           saved
-            ? "bg-accent-400 border-accent-400 text-ink"
+            ? "bg-accent-400 border-accent-400 text-ink dark:text-[#17212B]"
             : "bg-surface dark:bg-[#061A33] border-border dark:border-white/10 text-slate-700 dark:text-slate-200 hover:border-brand-500"
         }`}
       >
-        {saved ? <Check className="h-3.5 w-3.5 text-ink" /> : <Bookmark className="h-3.5 w-3.5" />}
+        {saved ? <Check className="h-3.5 w-3.5 text-ink dark:text-[#17212B]" /> : <Bookmark className="h-3.5 w-3.5" />}
         {saved ? "Saved" : "Save for offline"}
       </button>
 

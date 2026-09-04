@@ -113,7 +113,7 @@ export function SelfCheckTool() {
                         onClick={() => selectOption(q.id, opt.score)}
                         className={`text-left text-xs md:text-sm px-4 py-2.5 rounded-xl border transition-all ${
                           isSelected
-                            ? "bg-accent-400 text-ink font-semibold border-accent-300 shadow-md transform scale-[1.01]"
+                            ? "bg-accent-400 text-ink dark:text-[#17212B] font-semibold border-accent-300 shadow-md transform scale-[1.01]"
                             : "bg-white/5 border-white/15 text-white/90 hover:bg-white/10 hover:border-white/25"
                         }`}
                       >
@@ -134,7 +134,7 @@ export function SelfCheckTool() {
               type="button"
               disabled={answeredCount < totalQuestions}
               onClick={() => setSubmitted(true)}
-              className="bg-accent-400 hover:bg-accent-500 disabled:opacity-40 disabled:hover:bg-accent-400 text-ink font-bold px-6 py-2.5 rounded-full text-sm transition shadow-lg inline-flex items-center gap-2"
+              className="bg-accent-400 hover:bg-accent-500 disabled:opacity-40 disabled:hover:bg-accent-400 text-ink dark:text-[#17212B] font-bold px-6 py-2.5 rounded-full text-sm transition shadow-lg inline-flex items-center gap-2"
             >
               <Sparkles className="h-4 w-4" /> View My Insights & Coping Strategies
             </button>

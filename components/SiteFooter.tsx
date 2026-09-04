@@ -45,7 +45,7 @@ export function SiteFooter() {
         <div>
           <h4 className="font-semibold mb-3 text-accent-200">Stay Guided</h4>
           <p className="text-white/80 mb-3 text-xs">Get evidence-informed health guides delivered to your inbox weekly.</p>
-          <Link href="/newsletter" className="inline-flex bg-accent-400 hover:bg-accent-500 text-ink font-semibold px-4 py-2 rounded-full text-xs transition">
+          <Link href="/newsletter" className="inline-flex bg-accent-400 hover:bg-accent-500 text-ink dark:text-[#17212B] font-semibold px-4 py-2 rounded-full text-xs transition">
             Subscribe to Newsletter
           </Link>
           <div className="mt-4 flex flex-wrap gap-2">

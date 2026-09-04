@@ -33,7 +33,7 @@ export function Newsletter({ compact }: { compact?: boolean }) {
         <form onSubmit={onSubmit} className="mt-4 md:mt-0 flex gap-2 max-w-md w-full" noValidate>
           <label htmlFor="nl-email" className="sr-only">Email address</label>
           <input id="nl-email" type="email" required value={email} onChange={e=>setEmail(e.target.value)} placeholder="Your email address" className="flex-1 rounded-full px-4 py-2.5 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-accent-400" />
-          <Button type="submit" variant="primary" className="!bg-accent-400 !text-ink hover:!bg-accent-500">Subscribe</Button>
+          <Button type="submit" variant="primary" className="!bg-accent-400 !text-[#17212B] hover:!bg-accent-500">Subscribe</Button>
         </form>
       </div>
       {status==="success" && <p role="status" className="mt-3 text-sm bg-white/15 rounded-full inline-flex px-3 py-1">{detail || "Thanks — check your inbox for confirmation. Sample stored locally."}</p>}

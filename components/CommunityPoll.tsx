@@ -49,7 +49,7 @@ export function CommunityPoll() {
     <div className="bg-gradient-to-br from-slate-900 via-brand-800 to-[#0A223C] text-white rounded-3xl p-6 md:p-8 shadow-elevated border border-white/10 relative overflow-hidden">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-white/10">
         <div className="flex items-center gap-2.5">
-          <span className="p-2 bg-accent-400 text-ink rounded-xl font-bold">
+          <span className="p-2 bg-accent-400 text-ink dark:text-[#17212B] rounded-xl font-bold">
             <BarChart3 className="h-4 w-4" />
           </span>
           <div>

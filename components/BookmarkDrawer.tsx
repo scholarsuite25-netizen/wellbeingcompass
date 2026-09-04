@@ -57,7 +57,7 @@ export function BookmarkDrawer() {
       >
         <Bookmark className="h-3.5 w-3.5 text-white/90" />
         {items.length > 0 && (
-          <span className="absolute -top-1 -right-1 h-4 min-w-[16px] px-1 rounded-full bg-accent-400 text-ink text-[10px] font-extrabold grid place-items-center">
+          <span className="absolute -top-1 -right-1 h-4 min-w-[16px] px-1 rounded-full bg-accent-400 text-ink dark:text-[#17212B] text-[10px] font-extrabold grid place-items-center">
             {items.length}
           </span>
         )}
@@ -149,7 +149,7 @@ export function BookmarkDrawer() {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="bg-brand-700 dark:bg-accent-400 text-white dark:text-ink font-bold px-4 py-1.5 rounded-full text-xs hover:opacity-90 transition"
+                  className="bg-brand-700 dark:bg-accent-400 text-white dark:text-[#17212B] font-bold px-4 py-1.5 rounded-full text-xs hover:opacity-90 transition"
                 >
                   Done
                 </button>

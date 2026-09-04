@@ -21,7 +21,7 @@ export function SiteHeader() {
   const { data: session } = useSession();
   return (
     <header className="sticky top-0 z-40">
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-accent-400 text-ink px-4 py-2 rounded-full font-bold z-50">Skip to main content</a>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-accent-400 text-ink dark:text-[#17212B] px-4 py-2 rounded-full font-bold z-50">Skip to main content</a>
       {/* Line 1: Emergency - thin, professional */}
       <div className="bg-[#061A33] text-white border-b border-white/[0.06]">
         <div className="mx-auto max-w-7xl px-4 h-7 flex items-center justify-between gap-3 text-[11px] leading-none">
@@ -42,7 +42,7 @@ export function SiteHeader() {
           <div className="flex items-center h-[64px] gap-4">
             {/* Premium lockup - white text on navy (15.8:1), larger */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Wellbeing Compass home">
-              <span className="h-9 w-9 rounded-full bg-white text-[#0D2A4A] grid place-items-center shadow-sm">
+              <span className="h-9 w-9 rounded-full bg-white text-[#0D2A4A] dark:text-white grid place-items-center shadow-sm">
                 <Compass className="h-4.5 w-4.5 stroke-[1.75]" />
               </span>
               <span className="leading-none">
@@ -63,7 +63,7 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-1.5 ml-auto">
-              <Link href="/search" aria-label="Search" className="h-8 w-8 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:text-[#0A223C] hover:bg-white/95 transition">
+              <Link href="/search" aria-label="Search" className="h-8 w-8 grid place-items-center rounded-full bg-white text-[#0D2A4A] dark:text-white hover:text-[#0A223C] hover:bg-white/95 transition">
                 <Search className="h-3.5 w-3.5" />
               </Link>
               <ThemeToggle />
@@ -72,11 +72,11 @@ export function SiteHeader() {
                   <LogOut className="h-3.5 w-3.5"/>Out
                 </button>
               ) : (
-                <Link href="/login" className="hidden lg:inline-flex items-center gap-1 bg-white text-[#0D2A4A] px-3.5 py-2 rounded-full text-[13px] font-bold hover:bg-white/95 transition">
+                <Link href="/login" className="hidden lg:inline-flex items-center gap-1 bg-white text-[#0D2A4A] dark:text-white px-3.5 py-2 rounded-full text-[13px] font-bold hover:bg-white/95 transition">
                   Sign in
                 </Link>
               )}
-              <button onClick={()=>setOpen(v=>!v)} aria-label="Toggle menu" aria-expanded={open} className="lg:hidden h-9 w-9 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:bg-white/95 transition">
+              <button onClick={()=>setOpen(v=>!v)} aria-label="Toggle menu" aria-expanded={open} className="lg:hidden h-9 w-9 grid place-items-center rounded-full bg-white text-[#0D2A4A] dark:text-white hover:bg-white/95 transition">
                 {open ? <X className="h-4 w-4"/> : <Menu className="h-4 w-4"/>}
               </button>
             </div>
@@ -90,7 +90,7 @@ export function SiteHeader() {
           <div className="mx-auto max-w-7xl px-4 py-4">
             <div className="grid grid-cols-2 gap-2">
               {primaryNav.map(i=>(
-                <Link key={i.href} href={i.href} onClick={()=>setOpen(false)} className="px-3 py-3 rounded-2xl bg-white text-[#0D2A4A] font-bold text-base text-center hover:bg-accent-400 transition">
+                <Link key={i.href} href={i.href} onClick={()=>setOpen(false)} className="px-3 py-3 rounded-2xl bg-white text-[#0D2A4A] font-bold text-base text-center hover:bg-accent-400 transition dark:bg-white/10 dark:text-white dark:hover:bg-accent-400 dark:hover:text-[#0D2A4A]">
                   {i.label}
                 </Link>
               ))}

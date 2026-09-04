@@ -19,7 +19,7 @@ html { scroll-behavior: smooth; }
 }
 body { background: var(--bg); color: var(--ink); font-feature-settings: "cv02","cv03","cv04","cv11"; transition: background-color 0.25s ease, color 0.25s ease; }
 .dark body { background-color: #061A33; color: #F1F5F9; }
-.dark .bg-white { background-color: #0A223C !important; color: #F1F5F9; }
+.dark .bg-white { background-color: #0A223C !important; }
 .dark .bg-surface { background-color: #081B30 !important; }
 .dark .border-border { border-color: rgba(255,255,255,0.12) !important; }
 .dark .text-muted { color: #94A3B8 !important; }

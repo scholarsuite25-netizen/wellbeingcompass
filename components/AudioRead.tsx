@@ -93,7 +93,7 @@ export function AudioRead({ articleText, title }: { articleText: string; title: 
           onClick={reading ? (paused ? resumePlayback : pausePlayback) : () => speak(rate)}
           className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-bold transition shadow-sm ${
             reading
-              ? "bg-brand-700 text-white hover:bg-brand-800 dark:bg-accent-400 dark:text-ink"
+              ? "bg-brand-700 text-white hover:bg-brand-800 dark:bg-accent-400 dark:text-[#17212B]"
               : "bg-surface dark:bg-[#061A33] border border-border dark:border-white/10 text-ink dark:text-slate-100 hover:bg-brand-50"
           }`}
         >
@@ -133,7 +133,7 @@ export function AudioRead({ articleText, title }: { articleText: string; title: 
                   type="button"
                   onClick={() => changeRate(s)}
                   className={`px-1.5 py-0.5 rounded-full transition ${
-                    rate === s ? "bg-brand-500 text-white dark:bg-accent-400 dark:text-ink" : "hover:text-ink"
+                    rate === s ? "bg-brand-500 text-white dark:bg-accent-400 dark:text-[#17212B]" : "hover:text-ink"
                   }`}
                 >
                   {s}x

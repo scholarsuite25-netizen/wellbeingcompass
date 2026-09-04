@@ -40,7 +40,7 @@ export default function HomePage() {
             <p className="text-accent-400 font-semibold text-xs tracking-widest uppercase">Get help</p>
             <h2 className="font-display font-bold text-xl mt-2">Not sure where to start?</h2>
             <p className="text-white/80 text-sm mt-2">If you feel distressed or worried about someone, reach a trusted person or a healthcare professional. For urgent situations, use local emergency services.</p>
-            <Link href="/help" className="mt-4 inline-flex bg-accent-400 text-ink px-4 py-2 rounded-full font-semibold text-sm">Visit Help & Emergency</Link>
+            <Link href="/help" className="mt-4 inline-flex bg-accent-400 text-ink dark:text-[#17212B] px-4 py-2 rounded-full font-semibold text-sm">Visit Help & Emergency</Link>
           </div>
           <div className="bg-white border border-border rounded-3xl p-5">
             <h3 className="font-bold text-brand-700">Latest health stories</h3>
@@ -185,11 +185,11 @@ export default function HomePage() {
       <section className="mt-10">
         <div className="rounded-3xl bg-gradient-to-r from-brand-600 to-brand-700 text-white p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <Badge variant="accent" className="bg-accent-400 text-ink border-0">Awareness campaign</Badge>
+            <Badge variant="accent" className="bg-accent-400 text-ink dark:text-[#17212B] border-0">Awareness campaign</Badge>
             <h2 className="font-display font-bold text-xl mt-2">{campaigns[0].title}</h2>
             <p className="text-white/80 text-sm mt-1 max-w-xl">{campaigns[0].description}</p>
           </div>
-          <Link href="/campaigns" className="bg-accent-400 text-ink px-5 py-2.5 rounded-full font-semibold shrink-0">Explore campaigns</Link>
+          <Link href="/campaigns" className="bg-accent-400 text-ink dark:text-[#17212B] px-5 py-2.5 rounded-full font-semibold shrink-0">Explore campaigns</Link>
         </div>
       </section>
 

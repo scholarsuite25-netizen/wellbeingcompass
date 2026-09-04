@@ -38,7 +38,7 @@ export function QuizInteractive({ quizzes, courseSlug }: { quizzes: Q[]; courseS
           <button onClick={()=>{setIdx(0);setPicked(null);setScore(0);setDone(false)}} className="bg-white text-brand-700 px-4 py-2 rounded-full font-semibold text-sm">Retry</button>
           <span className="text-xs bg-white/15 rounded-full px-3 py-2 self-center">Progress saved locally • Certificate preview on 80%+</span>
         </div>
-        {pct>=80 && <div className="mt-4 bg-accent-400 text-ink rounded-xl p-3 text-sm font-semibold">🎉 Certificate of awareness (demo) — {courseSlug} — educational, not clinical certification</div>}
+        {pct>=80 && <div className="mt-4 bg-accent-400 text-ink dark:text-[#17212B] rounded-xl p-3 text-sm font-semibold">🎉 Certificate of awareness (demo) — {courseSlug} — educational, not clinical certification</div>}
       </div>
     )
   }
