@@ -86,8 +86,8 @@ export const articles: Article[] = [
     topics: ["Anxiety & Stress", "Coping Skills", "Awareness"],
     author: FOUNDER,
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&h=700&fit=crop",
-    imageAlt: "Young Nigerian woman sitting calmly in a bright room reflecting",
+    featuredImage: "/images/articles/understanding-everyday-anxiety.png",
+    imageAlt: "Calm scene illustrating mental health and everyday wellbeing",
     imageCaption: "Calm routines, supportive relationships and healthy habits all influence how we experience anxiety. Photo is illustrative.",
     content: [
       { type: "paragraph", text: "Anxiety involves feelings of worry, unease or fear. In small amounts it can help us prepare for challenges. When it becomes frequent, intense or hard to manage, it may affect sleep, work, relationships and daily life." },
