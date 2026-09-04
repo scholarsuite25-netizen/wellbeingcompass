@@ -22,9 +22,9 @@ export function HubTemplate({ title, description, category, articles, accent }: 
           {articles.map(a=> <ArticleCard key={a.slug} article={a} />)}
         </div>
       )}
-      <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm">
-        <p className="font-semibold">Educational use</p>
-        <p className="text-muted mt-1">Content in this hub supports learning and awareness. It does not replace professional evaluation. If symptoms persist or worsen, speak with a qualified healthcare professional.</p>
+      <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 dark:border-amber-500/30 dark:bg-amber-400/10 p-4 text-sm">
+        <p className="font-semibold dark:text-amber-200">Educational use</p>
+        <p className="text-muted mt-1 dark:text-amber-100/80">Content in this hub supports learning and awareness. It does not replace professional evaluation. If symptoms persist or worsen, speak with a qualified healthcare professional.</p>
       </div>
     </div>
   )

@@ -29,10 +29,10 @@ export type Article = {
 };
 
 export const authors: Author[] = [
-  { slug: "amina-okoro", name: "Amina Okoro", role: "Public Health Specialist, MPH", bio: "Nigerian public-health writer and researcher focused on prevention, health equity, and community wellness.", avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop" },
-  { slug: "daniel-owusu", name: "Daniel Owusu", role: "Senior Medical Editor", bio: "Health journalist and editor with 12 years in African health communications and plain-language medical education.", avatar: "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=400&h=400&fit=crop" },
-  { slug: "sarah-lee", name: "Sarah Nwachukwu", role: "Mental Health & Wellbeing Educator", bio: "Lagos-based counselling educator writing on emotional resilience, relationships, and youth coping strategies.", avatar: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop" },
-  { slug: "james-obi", name: "James Obi", role: "Family & Adolescent Contributor", bio: "Parenting educator and community advocate supporting family wellbeing and youth mentorship across Nigeria.", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" },
+  { slug: "amina-okoro", name: "Amina Okoro", role: "Public Health Specialist, MPH", bio: "Nigerian public-health writer and researcher focused on prevention, health equity, and community wellness.", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" },
+  { slug: "daniel-owusu", name: "Daniel Owusu", role: "Senior Medical Editor", bio: "Health journalist and editor with 12 years in African health communications and plain-language medical education.", avatar: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&h=400&fit=crop" },
+  { slug: "sarah-lee", name: "Sarah Nwachukwu", role: "Mental Health & Wellbeing Educator", bio: "Lagos-based counselling educator writing on emotional resilience, relationships, and youth coping strategies.", avatar: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=400&h=400&fit=crop" },
+  { slug: "james-obi", name: "James Obi", role: "Family & Adolescent Contributor", bio: "Parenting educator and community advocate supporting family wellbeing and youth mentorship across Nigeria.", avatar: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=400&h=400&fit=crop" },
 ];
 
 export const reviewers: Reviewer[] = [
@@ -63,7 +63,7 @@ export const articles: Article[] = [
     topics: ["Anxiety & Stress", "Coping Skills", "Awareness"],
     author: authors[2],
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1544717305-2782549b5136?w=1200&h=700&fit=crop",
     imageAlt: "Young Nigerian woman sitting calmly in a bright room reflecting",
     imageCaption: "Calm routines, supportive relationships and healthy habits all influence how we experience anxiety. Photo is illustrative.",
     content: [
@@ -158,7 +158,7 @@ export const articles: Article[] = [
     topics: ["Screening", "Primary Care", "Healthy Choices"],
     author: authors[1],
     reviewer: reviewers[1],
-    featuredImage: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian male doctor reviewing health chart in a modern medical clinic",
     content: [{ type: "paragraph", text: "Preventive care helps identify risks early when support is often more effective. This includes regular visits, blood pressure checks, immunizations and conversations about lifestyle." }],
     keyTakeaways: ["Know your numbers: blood pressure, and risk factors relevant to your age and history.", "Bring a list of medicines and questions to appointments."],
@@ -179,7 +179,7 @@ export const articles: Article[] = [
     topics: ["Parenting", "Adolescents", "Connection"],
     author: authors[3],
     reviewer: reviewers[2],
-    featuredImage: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1521106047354-5a5b85e819ee?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian parent and teenager conversing comfortably outdoors in a garden",
     content: [{ type: "paragraph", text: "Adolescents thrive when they feel both connected and respected. Consistent routines, open conversation and age-appropriate autonomy help." }],
     keyTakeaways: ["Stay curious, not interrogative.", "Teach coping by modeling it."],
@@ -200,7 +200,7 @@ export const articles: Article[] = [
     topics: ["Burnout", "Boundaries", "Leadership"],
     author: authors[1],
     reviewer: reviewers[1],
-    featuredImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=700&fit=crop",
+    featuredImage: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=1200&h=700&fit=crop",
     imageAlt: "Nigerian professional working at a desk in a bright, modern corporate office",
     content: [{ type: "paragraph", text: "Burnout is linked to prolonged workplace stress. It is not simply personal weakness; environment, workload, autonomy and recognition all matter." }],
     keyTakeaways: ["Boundaries are not selfish; they sustain performance.", "Managers shape norms by modeling rest and fairness."],
@@ -220,8 +220,8 @@ export const articles: Article[] = [
     category: "Environment & Health",
     topics: ["Air Quality", "Children", "Prevention"],
     author: authors[0],
-    featuredImage: "https://images.unsplash.com/photo-1534385842125-8c9ad0bd123c?w=1200&h=700&fit=crop",
-    imageAlt: "City morning view with soft natural daylight",
+    featuredImage: "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1200&h=700&fit=crop",
+    imageAlt: "Nigerian family outdoors breathing fresh air in their community",
     content: [{ type: "paragraph", text: "Ventilation, cooking practices, tobacco smoke and traffic exposure all affect air you breathe daily." }],
     keyTakeaways: ["Ventilate while cooking and avoid indoor smoking.", "Check local air quality when possible."],
     faqs: [{ q: "Are air purifiers useful?", a: "Some may help in specific indoor conditions, but ventilation and source control come first. Ask local guidance." }],
