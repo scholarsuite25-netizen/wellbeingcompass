@@ -1,0 +1,1 @@
+# Uploads are written at runtime by /api/media. Only the folder itself is tracked.

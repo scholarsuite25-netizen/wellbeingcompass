@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 export async function GET(req: Request){
   const { searchParams } = new URL(req.url);
   const q = searchParams.get("q") || "";
@@ -12,6 +14,8 @@ export async function GET(req: Request){
   return NextResponse.json(articles);
 }
 export async function POST(req: Request){
+  const session = await getServerSession(authOptions);
+  if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json();
   // Basic validation — in production add Zod + auth check
   const { slug, title, deck, excerpt, content, featuredImage, imageAlt, categoryId, authorId } = body;

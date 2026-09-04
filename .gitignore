@@ -11,7 +11,10 @@ coverage
 Thumbs.db
 prisma/dev.db
 prisma/dev.db-journal
-uploads/
+/uploads/
+public/uploads/*
+!public/uploads/.gitkeep
+!public/uploads/.gitkeep
 .vercel
 
 .vercel

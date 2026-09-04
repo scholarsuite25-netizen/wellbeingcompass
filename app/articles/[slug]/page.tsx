@@ -1,4 +1,6 @@
-import { articles, getArticle } from "@/lib/content";
+import { articles, getArticle, type Article } from "@/lib/content";
+import { dbGetArticle, mapArticle } from "@/lib/content-db";
+import { renderInline } from "@/lib/markup";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
@@ -15,15 +17,22 @@ import type { Metadata } from "next";
 
 export function generateStaticParams(){ return articles.map(a=>({ slug:a.slug })); }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const a = getArticle(params.slug);
+async function resolveArticle(slug: string): Promise<Article | null> {
+  const s = getArticle(slug);
+  if (s) return s;
+  const db = await dbGetArticle(slug);
+  return db ? (mapArticle(db) as Article) : null;
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const a = await resolveArticle(params.slug);
   if(!a) return {};
   return {
     title: `${a.title} | Wellbeing Compass`,
-    description: a.excerpt,
+    description: a.deck || a.excerpt,
     openGraph: {
       title: a.title,
-      description: a.excerpt,
+      description: a.deck || a.excerpt,
       type: "article",
       publishedTime: a.publishedAt,
       modifiedTime: a.updatedAt,
@@ -32,8 +41,8 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function Page({ params }: { params: { slug: string } }){
-  const article = getArticle(params.slug);
+export default async function Page({ params }: { params: { slug: string } }){
+  const article = await resolveArticle(params.slug);
   if(!article) return notFound();
   const related = articles.filter(a=>a.slug!==article.slug && (a.category===article.category || a.topics.some(t=>article.topics.includes(t)))).slice(0,2);
   const jsonLd = {
@@ -66,7 +75,7 @@ export default function Page({ params }: { params: { slug: string } }){
             <div className="flex flex-wrap gap-2 mb-3">
               <Badge>{article.category}</Badge>
               <Badge variant="success">{article.evidenceLevel}</Badge>
-              {article.reviewStatus==="medically-reviewed" && <Badge variant="accent">Medically reviewed</Badge>}
+              {["medically-reviewed","medically_reviewed"].includes(article.reviewStatus) && <Badge variant="accent">Medically reviewed</Badge>}
             </div>
             <h1 className="font-display font-extrabold text-3xl md:text-4xl leading-tight text-brand-700">{article.title}</h1>
             <p className="text-lg text-muted mt-3 leading-relaxed">{article.deck}</p>
@@ -112,13 +121,21 @@ export default function Page({ params }: { params: { slug: string } }){
             <div className="mt-6 prose-wellmind text-justify hyphens-auto">
               {article.content.map((block,i)=>{
                 const id = block.type==="heading" ? block.text.toLowerCase().replace(/[^a-z0-9]+/g,"-") : undefined;
-                if(block.type==="heading") return <h2 key={i} id={id}>{block.text}</h2>;
-                if(block.type==="paragraph") return <p key={i}>{block.text}</p>;
-                if(block.type==="list") return <ul key={i}>{block.items?.map(it=> <li key={it}>{it}</li>)}</ul>;
-                if(block.type==="quote") return <blockquote key={i}>{block.text}</blockquote>;
-                if(block.type==="callout") return <div key={i} className="rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm my-4">{block.text}</div>;
-                if(block.type==="tip") return <div key={i} className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm my-4">💡 {block.text}</div>;
-                if(block.type==="warning") return <div key={i} className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm my-4">⚠️ {block.text}</div>;
+                if(block.type==="heading") return <h2 key={i} id={id}>{renderInline(block.text)}</h2>;
+                if(block.type==="paragraph") return <p key={i}>{renderInline(block.text)}</p>;
+                if(block.type==="list") return <ul key={i}>{block.items?.map(it=> <li key={it}>{renderInline(it)}</li>)}</ul>;
+                if(block.type==="quote") return <blockquote key={i}>{renderInline(block.text)}</blockquote>;
+                if(block.type==="callout") return <div key={i} className="rounded-2xl border border-brand-200 bg-brand-50 p-4 text-sm my-4">{renderInline(block.text)}</div>;
+                if(block.type==="tip") return <div key={i} className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm my-4">💡 {renderInline(block.text)}</div>;
+                if(block.type==="warning") return <div key={i} className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm my-4">⚠️ {renderInline(block.text)}</div>;
+                if(block.type==="image") return (
+                  <figure key={i} className="my-4">
+                    {block.url
+                      ? <img src={block.url} alt={block.alt || ""} className="w-full rounded-2xl object-cover max-h-[420px]" loading="lazy" />
+                      : <div className="rounded-2xl border border-dashed border-border p-6 text-center text-sm text-muted">Image block — add a URL or upload from the editor</div>}
+                    {block.alt && <figcaption className="text-xs text-muted mt-2">{block.alt}</figcaption>}
+                  </figure>
+                );
                 return null;
               })}
             </div>

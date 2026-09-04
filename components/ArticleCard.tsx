@@ -13,7 +13,7 @@ export function ArticleCard({ article, featured }: { article: Article; featured?
         <div className="flex flex-wrap gap-2 mb-2">
           <Badge variant="default">{article.category}</Badge>
           {article.evidenceLevel && <Badge variant="success">{article.evidenceLevel}</Badge>}
-          {article.reviewStatus === "medically-reviewed" && <Badge variant="accent">✓ Medically reviewed</Badge>}
+          {["medically-reviewed","medically_reviewed"].includes(article.reviewStatus) && <Badge variant="accent">✓ Medically reviewed</Badge>}
         </div>
         <Link href={`/articles/${article.slug}`} className="hover:text-brand-600">
           <h3 className={`font-display font-bold leading-tight ${featured ? "text-xl md:text-2xl" : "text-lg"}`}>{article.title}</h3>

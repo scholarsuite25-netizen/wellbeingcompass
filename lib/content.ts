@@ -37,7 +37,7 @@ export type Article = {
   featuredImage: string;
   imageAlt: string;
   imageCaption?: string;
-  content: { type: "heading"|"paragraph"|"list"|"quote"|"callout"|"tip"|"warning"; text: string; items?: string[] }[];
+  content: { type: "heading"|"paragraph"|"list"|"quote"|"callout"|"tip"|"warning"|"image"; text: string; items?: string[]; url?: string; alt?: string }[];
   keyTakeaways: string[];
   faqs: { q: string; a: string }[];
   references: { title: string; url: string }[];
