@@ -21,7 +21,7 @@ Copy from `.env.example` and set in Vercel Dashboard. Mark **Production** and **
 |-----|------|
 | `EMAIL_PROVIDER=console` (dev) / `resend` (prod) | `resend` requires `RESEND_API_KEY=re_...` + `EMAIL_FROM`, `CONTACT_TO_EMAIL` |
 | `RESEND_API_KEY` | Resend → API Keys |
-| `MEDIA_STORAGE_PROVIDER=local`→`s3` | `s3` requires `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_BUCKET` |
+| `MEDIA_STORAGE_PROVIDER=local`→`vercel-blob` | **Durable uploads.** `vercel-blob` requires `BLOB_READ_WRITE_TOKEN` (Vercel Dashboard › Storage › Blob › Connect). `s3` alternative requires `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_S3_BUCKET` |
 | `ANALYTICS_PROVIDER=none`→`plausible`/`ga` | `plausible` needs `ANALYTICS_DOMAIN` |
 | `NEXT_PUBLIC_SUPABASE_URL` + `NEXT_PUBLIC_SUPABASE_ANON_KEY` + `SUPABASE_SERVICE_ROLE_KEY` | If using Supabase client/storage directly |
 | `RATE_LIMIT_WINDOW_MS`, `RATE_LIMIT_MAX` | Defaults 60000/60 |

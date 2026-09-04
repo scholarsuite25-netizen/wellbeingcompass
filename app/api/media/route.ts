@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { randomBytes } from "crypto";
-import { mkdirSync, writeFileSync } from "fs";
-import { join } from "path";
+import { storeImage } from "@/lib/storage";
 
 const MAX_BYTES = 3 * 1024 * 1024; // 3MB
 const ALLOWED: Record<string, string> = {
@@ -39,13 +38,11 @@ export async function POST(req: Request) {
   if (buffer.length > MAX_BYTES) return NextResponse.json({ error: "Image exceeds 3MB limit" }, { status: 413 });
 
   const filename = `img-${Date.now()}-${randomBytes(4).toString("hex")}.${ext}`;
-  const dir = join(process.cwd(), "public", "uploads");
-  try {
-    mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, filename), buffer);
-  } catch {
-    return NextResponse.json({ error: "Could not persist image on this host" }, { status: 500 });
-  }
+  const stored = await storeImage({ buffer, mime, ext, filename });
 
-  return NextResponse.json({ url: `/uploads/${filename}`, storageProvider: "local", durable: false });
+  return NextResponse.json({
+    url: stored.url,
+    storageProvider: stored.storageProvider,
+    durable: stored.durable,
+  });
 }

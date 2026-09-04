@@ -12,12 +12,13 @@ const serverSchema = z.object({
   VERCEL_ENV: z.enum(["production", "preview", "development"]).optional(),
   VERCEL: z.string().optional(), // "1" on Vercel
   // Media storage
-  MEDIA_STORAGE_PROVIDER: z.enum(["local", "s3", "r2", "supabase"]).default("local"),
+  MEDIA_STORAGE_PROVIDER: z.enum(["local", "s3", "r2", "supabase", "vercel-blob"]).default("local"),
   MEDIA_STORAGE_BUCKET: z.string().optional(),
   AWS_ACCESS_KEY_ID: z.string().optional(),
   AWS_SECRET_ACCESS_KEY: z.string().optional(),
   AWS_REGION: z.string().optional(),
   AWS_S3_BUCKET: z.string().optional(),
+  BLOB_READ_WRITE_TOKEN: z.string().optional(), // Vercel Blob storage
   // Email
   EMAIL_PROVIDER: z.enum(["console", "resend"]).default("console"),
   EMAIL_FROM: z.string().email().default("noreply@wellbeingcompass.org"),
@@ -85,6 +86,9 @@ function validateEnv(): ServerEnv & ClientEnv {
   }
   if (raw.MEDIA_STORAGE_PROVIDER === "s3" && (!raw.AWS_ACCESS_KEY_ID || !raw.AWS_SECRET_ACCESS_KEY) && raw.NODE_ENV === "production") {
     errors.push("  • AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY: required when MEDIA_STORAGE_PROVIDER=s3 in production");
+  }
+  if (raw.MEDIA_STORAGE_PROVIDER === "vercel-blob" && !raw.BLOB_READ_WRITE_TOKEN && raw.NODE_ENV === "production") {
+    errors.push("  • BLOB_READ_WRITE_TOKEN: required when MEDIA_STORAGE_PROVIDER=vercel-blob in production — set it in Vercel Dashboard (Storage › Blob › Connect) or the polyfill from a stored copy");
   }
   // Vercel: DATABASE_URL must be postgresql (sqlite file: won't persist on ephemeral FS)
   if ((raw.VERCEL_ENV === "production" || raw.VERCEL === "1") && raw.DATABASE_URL?.startsWith("file:")) {

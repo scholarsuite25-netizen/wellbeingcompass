@@ -87,7 +87,7 @@ export default function EditorPage() {
       if (!res.ok) throw new Error(data.error || "Upload failed");
       setForm((f) => ({ ...f, featuredImage: data.url, imageAlt: f.imageAlt || file.name.replace(/\.[^.]+$/, "") }));
       setImgPreview(data.url);
-      setMsg({ kind: "ok", text: "Image uploaded. It will be visible after this article is deployed if it is a durable host file." });
+      setMsg({ kind: "ok", text: data.durable ? "Image uploaded to durable storage." : "Image uploaded to this host (ephemeral — may be lost on redeploy)." });
     } catch (err: any) {
       setMsg({ kind: "err", text: err?.message || "Upload failed — check your session and try again." });
     } finally {
