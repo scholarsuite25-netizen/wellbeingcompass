@@ -54,6 +54,16 @@ export function SiteHeader() {
               </span>
             </Link>
 
+            {/* Call & WhatsApp buttons — left side, next to logo */}
+            <div className="hidden md:flex items-center gap-1.5 shrink-0">
+              <a href="tel:+2348146620168" aria-label="Call" className="inline-flex items-center gap-1.5 bg-white text-[#0D2A4A] px-3 py-2 rounded-full text-[13px] font-bold hover:bg-white/95 transition">
+                <Phone className="h-3.5 w-3.5"/> Call
+              </a>
+              <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="inline-flex items-center gap-1.5 bg-[#25D366] text-white px-3 py-2 rounded-full text-[13px] font-bold hover:bg-[#1fbd5a] transition">
+                <MessageCircle className="h-3.5 w-3.5"/> WhatsApp
+              </a>
+            </div>
+
             {/* Center nav - one word each, white on navy (15.8:1), no wrap */}
             <nav aria-label="Primary" className="hidden lg:flex items-center gap-0.5 ml-4 flex-1 justify-center">
               {primaryNav.map(i=>(
@@ -64,12 +74,6 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center gap-1.5 ml-auto">
-              <a href="tel:+2348146620168" aria-label="Call" className="hidden md:inline-flex items-center gap-1.5 bg-white text-[#0D2A4A] px-3 py-2 rounded-full text-[13px] font-bold hover:bg-white/95 transition">
-                <Phone className="h-3.5 w-3.5"/> Call
-              </a>
-              <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hidden md:inline-flex items-center gap-1.5 bg-[#25D366] text-white px-3 py-2 rounded-full text-[13px] font-bold hover:bg-[#1fbd5a] transition">
-                <MessageCircle className="h-3.5 w-3.5"/> WhatsApp
-              </a>
               <Link href="/search" aria-label="Search" className="h-8 w-8 grid place-items-center rounded-full bg-white text-[#0D2A4A] hover:text-[#0A223C] hover:bg-white/95 transition">
                 <Search className="h-3.5 w-3.5" />
               </Link>

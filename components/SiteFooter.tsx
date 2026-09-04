@@ -48,6 +48,14 @@ export function SiteFooter() {
           <Link href="/newsletter" className="inline-flex bg-accent-400 hover:bg-accent-500 text-ink font-semibold px-4 py-2 rounded-full text-xs transition">
             Subscribe to Newsletter
           </Link>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a href="tel:+2348146620168" className="inline-flex items-center gap-1.5 bg-white text-brand-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-white/90 transition">
+              Call us
+            </a>
+            <a href="https://wa.me/2348146620168" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-[#25D366] text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-[#1fbd5a] transition">
+              WhatsApp us
+            </a>
+          </div>
           <p className="mt-4 text-xs text-white/60">© {new Date().getFullYear()} Wellbeing Compass. Educational use only.</p>
         </div>
       </div>
